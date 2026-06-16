@@ -23,9 +23,11 @@ pip install -r requirements.txt
 
 ## Build
 
+Output goes into the `build/` folder:
+
 ```sh
-python karun_report.py report.json "My Report.docx"
-python export_pdf.py "My Report.docx" "My Report.pdf"   # optional
+python karun_report.py report.json "build/My Report.docx"
+python export_pdf.py "build/My Report.docx" "build/My Report.pdf"   # optional
 ```
 
 ## Writing a report — `report.json`

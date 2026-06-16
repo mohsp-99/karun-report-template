@@ -3,8 +3,9 @@
 //
 // 1. Fill in metadata.typ.
 // 2. Write your content below using plain Typst markup (see the cheatsheet).
-// 3. Build:  typst compile report.typ "My Report.pdf"
-//            typst watch  report.typ      (live preview while editing)
+// 3. Build (output goes into build/):
+//      typst compile report.typ "build/My Report.pdf"
+//      typst watch  report.typ "build/My Report.pdf"   (live preview)
 //
 // Set lang to "en" (left-to-right) or "fa" (Persian, right-to-left).
 //

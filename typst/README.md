@@ -16,19 +16,23 @@ and Persian (RTL). This is a Typst port of the original Karun LaTeX template.
 
 ## Build
 
-From inside the `typst/` folder:
+From inside the `typst/` folder (output goes into `build/`):
 
 ```sh
-typst compile report.typ "My Report.pdf"
-typst watch  report.typ          # live preview while editing
+typst compile report.typ "build/My Report.pdf"
+typst watch  report.typ "build/My Report.pdf"   # live preview while editing
 ```
 
 To build the bundled example (it lives in a subfolder, so pass `--root` so it
 can find `karun.typ`):
 
 ```sh
-typst compile --root . examples/swift-product-vision/main-article.typ "Redefining SWIFT.pdf"
+typst compile --root . examples/swift-product-vision/main-article.typ "build/Redefining SWIFT.pdf"
 ```
+
+> **`typst` not recognized?** It must be on your PATH. If it was just installed
+> or added to PATH, open a new terminal / restart Claude Desktop, or call it by
+> its full path (e.g. `"C:\path\to\typst.exe" compile …`).
 
 ## Writing a report
 

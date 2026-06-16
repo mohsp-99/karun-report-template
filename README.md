@@ -66,21 +66,32 @@ No PowerShell scripts are used or required; everything runs through the
 
 ## Quick start
 
+Every generated document is written into that approach's **`build/`** folder.
+
 **Typst** (best-looking PDF):
 ```sh
 cd typst
 # edit metadata.typ and report.typ, then:
-typst compile report.typ "My Report.pdf"
+typst compile report.typ "build/My Report.pdf"
 ```
 
 **Word** (editable .docx):
 ```sh
 cd word
-pip install -r requirements.txt          # once
+pip install -r requirements.txt                       # once
 # edit report.json, then:
-python karun_report.py report.json "My Report.docx"
-python export_pdf.py "My Report.docx"    # optional PDF
+python karun_report.py report.json "build/My Report.docx"
+python export_pdf.py "build/My Report.docx"           # optional PDF
 ```
 
 See each approach's `README.md` for full details and `SKILL.md` for how an AI
 assistant should drive it.
+
+## Troubleshooting
+
+- **`typst` is not recognized / "command not found".** The `typst` binary must
+  be on your PATH. If you just installed it (or it was just added to PATH),
+  **open a new terminal and restart Claude Desktop** so the updated PATH is
+  picked up. As a fallback, call it by its full path, e.g.
+  `"C:\path\to\typst.exe" compile report.typ "build/My Report.pdf"`.
+- **`python` is not recognized.** Install Python 3.9+ and reopen the terminal.

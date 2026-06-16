@@ -33,11 +33,13 @@ into `report.typ` + `metadata.typ` and compile. Do not edit `karun.typ`.
    - Use real `"quotes"` and `---` (they auto-convert to curly quotes / em-dash).
    - Separate paragraphs with a blank line.
 
-4. **Compile** from this folder:
+4. **Compile** from this folder, writing the output into `build/`:
    ```sh
-   typst compile report.typ "<Report Title>.pdf"
+   typst compile report.typ "build/<Report Title>.pdf"
    ```
    Report any compile errors to yourself and fix the markup until it builds.
+   If `typst` is "not recognized", it is not on PATH — tell the user to open a
+   new terminal / restart Claude Desktop, or call it by its full path.
 
 5. **Hand the PDF to the user** and summarize what you produced.
 

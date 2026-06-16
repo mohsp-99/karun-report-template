@@ -21,14 +21,14 @@ into a JSON file and run the engine. Do not edit `karun_report.py`.
    the schema below. Save figure image files next to it, in an `images/`
    subfolder, or in `assets/`.
 
-3. **Build the document:**
+3. **Build the document** (output goes into `build/`):
    ```sh
-   python karun_report.py <content.json> "<Report Title>.docx"
+   python karun_report.py <content.json> "build/<Report Title>.docx"
    ```
 
 4. **Optionally export a PDF:**
    ```sh
-   python export_pdf.py "<Report Title>.docx"
+   python export_pdf.py "build/<Report Title>.docx"
    ```
    (Uses LibreOffice if present. If not, tell the user to open the .docx in Word
    and Save As PDF, or to use the Typst approach for a native PDF.)

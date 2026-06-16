@@ -7,9 +7,8 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
-# Generated output at the template roots (build wherever you like).
-# Checked-in sample outputs under samples/ are NOT ignored.
-/word/*.docx
-/word/*.pdf
-/typst/*.pdf
-!**/samples/**
+# Build artifacts — every generated document goes into a build/ folder.
+# The folders themselves are kept (via .gitkeep); their contents are ignored.
+# Checked-in sample outputs under samples/ are NOT affected.
+**/build/*
+!**/build/.gitkeep
