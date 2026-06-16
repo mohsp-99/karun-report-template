@@ -1,0 +1,35 @@
+{
+  "_comment": "EDIT THIS to create a report, then run: python karun_report.py report.json \"My Report.docx\". Set lang to 'en' (Persian/RTL is not supported in the Word path yet). access_level: 1=Internal 2=External 3=Public. confidentiality: 1=Normal 2=Confidential 3=Top Secret. See examples/swift-product-vision.json for a full worked example with figures.",
+  "lang": "en",
+  "meta": {
+    "title": "Main Report Title",
+    "subtitle": "Report Subtitle",
+    "summary_title": "Document Summary Title",
+    "client_label": "Prepared for:",
+    "client": "Recipient Name / Department / Company",
+    "prepared_by": "Author Name / Department / Company",
+    "access_level": 3,
+    "confidentiality": 1,
+    "doc_id": "FILE-NAME-V01-20260101",
+    "date": "2026/01/01",
+    "year": 2026
+  },
+  "body": [
+    {"type": "heading", "level": 1, "numbered": false, "text": "Executive Summary"},
+    {"type": "paragraph", "text": "Replace this with your executive summary. Inline markup works: **bold**, *italic*, and `code`."},
+
+    {"type": "heading", "level": 1, "text": "First Section"},
+    {"type": "paragraph", "text": "Write the first section here. Each paragraph is a separate item."},
+
+    {"type": "heading", "level": 2, "text": "A Subsection"},
+    {"type": "paragraph", "text": "A subsection with a bullet list:"},
+    {"type": "list", "items": [
+      "First point, with a **bold** lead-in.",
+      "Second point, mentioning a `code` term.",
+      "Third point."
+    ]},
+
+    {"_comment_figure": "To add a figure, place the image next to this file (or in assets/) and add an item like the next line (remove the leading underscore in the type):",
+     "_type": "figure", "image": "your-figure.png", "caption_label": "Figure 1", "caption": "Your caption."}
+  ]
+}

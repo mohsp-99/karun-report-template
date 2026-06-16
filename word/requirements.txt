@@ -1,0 +1,4 @@
+python-docx>=1.1.0
+# PDF export (export_pdf.py) uses LibreOffice via its `soffice` command — no
+# extra Python packages required. Alternatively, open the .docx in Microsoft
+# Word and Save As PDF, or use the Typst approach for a native PDF.
