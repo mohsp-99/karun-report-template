@@ -1,60 +1,65 @@
 ---
 name: karun-report-typst
-description: Generate a branded Karun report as a PDF using the Typst template in this folder. Use whenever the user wants to write, draft, or produce a Karun report, whitepaper, executive summary, or formal Karun-branded PDF — in English or Persian. The user describes the content; you fill in metadata.typ and report.typ and compile with Typst.
+description: Creates a branded Karun report as a PDF (English or Persian/RTL) from content the user provides. Use when the user wants to write or produce a Karun report, whitepaper, executive summary, product/strategy document, or any branded Karun PDF.
 ---
 
-# Karun Report — Typst
+# Karun Report — Typst (PDF)
 
-This folder is a Typst template for branded Karun reports (PDF output, English
-or Persian/RTL). The user supplies the *content* in plain language; you write it
-into `report.typ` + `metadata.typ` and compile. Do not edit `karun.typ`.
+Turn the user's content into a branded Karun PDF using the Typst template in
+**this skill's folder**. The user supplies only the *content*; you handle all
+layout by editing two files and compiling.
 
-## Workflow
+**Do not edit `karun.typ`** — it is the template engine.
 
-1. **Gather content conversationally.** Determine the metadata (title, subtitle,
-   summary title, client/recipient, author, access level, confidentiality,
-   document ID, date, year) and the body (sections, subsections, paragraphs,
-   lists, figures). Ask only for what's missing; infer structure from a pasted
-   draft. Confirm the language: English (`"en"`) or Persian (`"fa"`).
+## Files (all paths are relative to this folder)
+- `metadata.typ` — report metadata → **you edit this**
+- `report.typ` — report content → **you edit this**
+- `karun.typ`, `images/` — engine + brand assets → do not touch
+- `examples/swift-product-vision/` — a full worked example to copy patterns from
+- `build/` — write the output PDF here
 
-2. **Fill in `metadata.typ`.** Set every field. `access_level`: 1 Internal /
-   2 External / 3 Public. `confidentiality`: 1 Normal / 2 Confidential /
-   3 Top Secret.
-
-3. **Write `report.typ`.** Keep the three setup lines (set `lang` on all three);
-   replace the content placeholder with the real content using Typst markup:
-   - `= Section`, `== Subsection` (auto-numbered, Karun-blue).
-   - `*bold*`, `_italic_`, `` `code` ``.
-   - `- item` for bullet lists.
-   - `#figure(image("images/x.png", width: 100%), caption: [ … ])` — put figure
-     files in `images/`.
-   - `#heading(level: 1, numbering: none)[Executive Summary]` for an unnumbered
-     section that still appears in the Table of Contents.
-   - Use real `"quotes"` and `---` (they auto-convert to curly quotes / em-dash).
-   - Separate paragraphs with a blank line.
-
-4. **Compile** from this folder, writing the output into `build/`:
-   ```sh
+## Steps
+1. **Collect the content.** Gather the metadata (title, subtitle, summary title,
+   client/recipient, author, access level, confidentiality, document ID, date)
+   and the body. Infer structure from anything the user pastes; ask only for
+   what's missing. Confirm the language: English or Persian.
+2. **Edit `metadata.typ`** — fill every field.
+   `access_level`: 1 Internal / 2 External / 3 Public.
+   `confidentiality`: 1 Normal / 2 Confidential / 3 Top Secret.
+3. **Edit `report.typ`** — set `lang` ("en" or "fa") on the three setup lines,
+   then replace the placeholder content using the markup below.
+4. **Build the PDF into `build/`:**
+   ```
    typst compile report.typ "build/<Report Title>.pdf"
    ```
-   Report any compile errors to yourself and fix the markup until it builds.
-   If `typst` is "not recognized", it is not on PATH — tell the user to open a
-   new terminal / restart Claude Desktop, or call it by its full path.
+   - **If you can run shell commands here:** run it; if it fails to compile, read
+     the error, fix the markup, and retry until it builds; then report the path.
+   - **If you cannot run commands:** save the edited files and give the user the
+     exact command above to run themselves.
+   - **If `typst` is "not recognized":** it isn't on PATH — tell the user to open
+     a new terminal / restart the app, or call the binary by its full path.
 
-5. **Hand the PDF to the user** and summarize what you produced.
+**Done when:** `report.typ` + `metadata.typ` reflect the user's content and
+either the PDF is built in `build/` or the user has the exact build command.
 
-## For a Persian report
-Set `lang: "fa"` in the three setup lines of `report.typ`, write the content in
-Persian, and use Persian metadata values. The template handles RTL, the Persian
-logo, labels, and page-number text automatically. The legal disclaimer on the
-cover intentionally stays in English.
+## Markup (used inside `report.typ`)
+- `= Section`, `== Subsection` — auto-numbered, Karun-blue headings.
+- `*bold*`, `_italic_`, `` `code` ``.
+- `- item` — bullet list.
+- `"quotes"` and `---` auto-convert to curly quotes / em-dash.
+- `#figure(image("images/x.png", width: 100%), caption: [ … ])` — put figure
+  files in `images/`.
+- `#heading(level: 1, numbering: none)[Executive Summary]` — an unnumbered
+  heading that still appears in the Table of Contents.
+- Separate paragraphs with a blank line.
 
-## Reference
-- A complete worked example: `examples/swift-product-vision/`.
-- A Persian/RTL example: `examples/persian-rtl-test.typ`.
-- Full human documentation: `README.md`.
+## Persian (RTL)
+Set `lang: "fa"` on all three setup lines, write the content in Persian, and use
+Persian metadata. RTL, the Persian logo, labels, and page numbers are automatic;
+the cover's legal disclaimer intentionally stays in English. Pattern reference:
+`examples/persian-rtl-test.typ`.
 
-## Notes / limits
-- Requires the `typst` binary on PATH and the **Dubai** font installed.
-- Output is a PDF. If the user needs an *editable Word* file, use the Word
-  approach in the sibling `word/` folder instead.
+## Notes
+- Requires the `typst` binary and the **Dubai** font for an exact match.
+- Need an *editable Word (.docx)* instead? Use the `karun-report-word` skill.
+- Detailed docs: `README.md`. Full example: `examples/swift-product-vision/`.

@@ -24,6 +24,23 @@ There are **two parallel approaches**. Pick one per report:
 Each approach is **self-contained** and has its own `README.md` (how to use it
 by hand) and `SKILL.md` (instructions for the AI assistant).
 
+## Using with Claude Desktop (Agent Skills)
+
+Each approach folder is also a **Claude Desktop / Claude Code skill** — its
+`SKILL.md` tells Claude how to gather your content and build the document.
+
+- **Install:** copy the approach folder into your skills directory
+  (`~/.claude/skills/`), or zip the folder and upload it via Claude Desktop →
+  Customize → Skills → **+**. The **folder name becomes the skill name**, so the
+  skills are best installed under the names `karun-report-typst/` and
+  `karun-report-word/` (those names are already set in each `SKILL.md`).
+- **Use:** open a chat, describe the report you want, and Claude follows the
+  skill — it writes the content into the template files and builds into `build/`.
+- **Building:** Claude must be able to run `typst` / `python` for the *build*
+  step. If your Claude Desktop setup can't run local commands, the skill still
+  writes all the source files and gives you the exact one-line build command to
+  run yourself. (Claude Code can run the build directly.)
+
 ## Structure
 
 ```
