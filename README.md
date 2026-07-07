@@ -41,6 +41,30 @@ Each approach folder is also a **Claude Desktop / Claude Code skill** — its
   writes all the source files and gives you the exact one-line build command to
   run yourself. (Claude Code can run the build directly.)
 
+## Using with Claude Code on the web (cloud environment)
+
+You can run this template in a **Claude Code cloud environment** so it comes
+pre-installed with `typst` and `python-docx` and is ready to build reports —
+no local setup.
+
+1. Go to **claude.ai/code → New cloud environment**.
+2. **Name:** e.g. `karun-report`. **Network access:** `Trusted`.
+3. **Setup script:** paste the one-liner below (it downloads and runs
+   [`scripts/cloud-setup.sh`](scripts/cloud-setup.sh)):
+
+   ```bash
+   #!/bin/bash
+   curl -fsSL https://raw.githubusercontent.com/mohsp-99/karun-report-template/main/scripts/cloud-setup.sh | bash
+   ```
+
+   Prefer no network dependency at start-up? Paste the full contents of
+   `scripts/cloud-setup.sh` instead — it is self-contained.
+4. **Create environment**, then start a session and describe the report you want.
+
+The setup script clones this repo into the workspace, installs `typst` and
+`python-docx`, and **removes `.git`** — so the assistant's edits stay local and
+never open a pull request back to this template.
+
 ## Structure
 
 ```
