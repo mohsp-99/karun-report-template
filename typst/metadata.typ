@@ -5,20 +5,20 @@
 
 #let meta = (
   // --- Titles -------------------------------------------------------------
-  title: "Main Report Title",            // large title on the cover
-  subtitle: "Report Subtitle",           // gray line under the title
-  summary_title: "Document Summary Title", // shown in the metadata table + header
+  title: "درخواست ارائه راه‌حل (RFP)",            // large title on the cover
+  subtitle: "ارائه راهکارهای اتوماسیون برای خطوط مونتاژ دستگیره‌های آلومینیومی",           // gray line under the title
+  summary_title: "درخواست ارائه راه‌حل اتوماسیون مونتاژ", // shown in the metadata table + header
 
   // --- Stakeholders -------------------------------------------------------
-  employer: "Recipient Name / Department / Company", // prepared for
-  producer: "Author Name / Department / Company",     // prepared by
+  employer: "پیشنهاددهندگان راهکارهای اتوماسیون", // prepared for
+  producer: "شرکت کارون — واحد تولید دستگیره‌های آلومینیومی",     // prepared by
 
   // --- Classification -----------------------------------------------------
-  access_level: 3,     // 1 = Internal | 2 = External     | 3 = Public
+  access_level: 2,     // 1 = Internal | 2 = External     | 3 = Public
   confidentiality: 1,  // 1 = Normal   | 2 = Confidential | 3 = Top Secret
 
   // --- Identification -----------------------------------------------------
-  doc_id: "FILE-NAME-V01-20260101",
-  date: "2026/01/01",  // header/cover date (use YYYY/MM/DD, or Persian digits for fa)
-  year: 2026,          // copyright year on the cover footer
+  doc_id: "RFP-ALU-HANDLE-AUTOMATION-V01-14040416",
+  date: "۱۴۰۴/۰۴/۱۶",  // header/cover date (use YYYY/MM/DD, or Persian digits for fa)
+  year: 1404,          // copyright year on the cover footer
 )
