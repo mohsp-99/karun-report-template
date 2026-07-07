@@ -13,7 +13,7 @@ There are **two parallel approaches**. Pick one per report:
 
 | | **Typst** (`typst/`) | **Word** (`word/`) |
 |---|---|---|
-| Output | **PDF** (native) | **Editable `.docx`** (+ optional PDF) |
+| Output | **PDF** (native) | **Editable `.docx`** (export a PDF from Word) |
 | Fidelity to the brand | Highest (matches the original LaTeX template) | Very faithful, not pixel-perfect |
 | Editable by recipients | No (PDF) | **Yes** (Word) |
 | Languages | **English + Persian (RTL)** | English |
@@ -51,32 +51,25 @@ Each approach folder is also a **Claude Desktop / Claude Code skill** — its
 │   ├── karun.typ        ← the template engine — do NOT edit
 │   ├── metadata.typ     ← EDIT: report metadata
 │   ├── report.typ       ← EDIT: report content
-│   ├── images/          ← brand assets (bg, logos)
-│   ├── examples/        ← worked example + Persian test
-│   └── samples/         ← sample output PDF
+│   ├── fonts/           ← bundled Dubai font (--font-path fonts)
+│   └── images/          ← brand assets (bg, logos)
 └── word/                ← Word approach (editable .docx)
     ├── README.md  SKILL.md  requirements.txt
     ├── karun_report.py  ← the template engine — do NOT edit
-    ├── export_pdf.py    ← optional .docx → .pdf (LibreOffice)
     ├── report.json      ← EDIT: report content
-    ├── assets/          ← brand assets (bg, logos)
-    ├── examples/        ← worked example (with figures)
-    └── samples/         ← sample output PDF
+    └── assets/          ← brand assets (bg, logos)
 ```
-
-The `samples/` folders contain a finished example — **"Redefining SWIFT"** —
-so you can see exactly what each approach produces. That document is a *sample
-of the output*, not the template itself.
 
 ## Prerequisites
 
 - **Typst approach:** the `typst` binary on your PATH. Download the single
   executable from <https://github.com/typst/typst/releases/latest>.
 - **Word approach:** Python 3.9+ and `python-docx`
-  (`pip install -r word/requirements.txt`). For automated PDF export,
-  LibreOffice (optional — you can also Save As PDF from Word).
-- **Font:** install **Dubai** (the font used by the original template) for an
-  exact match. Without it, a default sans-serif is substituted.
+  (`pip install -r word/requirements.txt`). To get a PDF, open the `.docx` in
+  Microsoft Word and **Save As → PDF**.
+- **Font:** the Typst approach **bundles Dubai** (applied with `--font-path
+  fonts`), so nothing to install. The Word approach uses your system **Dubai**
+  font — install it for an exact match, otherwise Word substitutes a default.
 
 No PowerShell scripts are used or required; everything runs through the
 `python` and `typst` commands directly.
@@ -89,7 +82,7 @@ Every generated document is written into that approach's **`build/`** folder.
 ```sh
 cd typst
 # edit metadata.typ and report.typ, then:
-typst compile report.typ "build/My Report.pdf"
+typst compile --font-path fonts report.typ "build/My Report.pdf"
 ```
 
 **Word** (editable .docx):
@@ -98,7 +91,7 @@ cd word
 pip install -r requirements.txt                       # once
 # edit report.json, then:
 python karun_report.py report.json "build/My Report.docx"
-python export_pdf.py "build/My Report.docx"           # optional PDF
+# then open the .docx in Word and Save As → PDF if you need a PDF
 ```
 
 See each approach's `README.md` for full details and `SKILL.md` for how an AI

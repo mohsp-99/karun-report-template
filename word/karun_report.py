@@ -14,8 +14,8 @@ Renders a structured report (a Python dict / JSON file) into a branded Word
     with captions.
 
 The chrome is built ONCE here, correctly, and is data-driven. An AI assistant
-only has to produce the content JSON (see examples/ and SKILL.md); it never
-touches Word internals.
+only has to produce the content JSON (see SKILL.md); it never touches Word
+internals.
 
 Usage:
     python karun_report.py <content.json> <output.docx>
@@ -95,7 +95,7 @@ def _subp(parent, tag, **attrs):
 
 
 def add_field(paragraph, instr, *, size=9, font=FONT, color=None, bold=False):
-    """Insert a Word field (e.g. PAGE, NUMPAGES, TOC) into a paragraph."""
+    """Insert a Word field (e.g. PAGE, SECTIONPAGES, TOC) into a paragraph."""
     run = paragraph.add_run()
     _apply_run_format(run, size=size, font=font, color=color, bold=bold)
     r = run._r
@@ -403,7 +403,10 @@ def setup_running_header_footer(section, meta, logo):
     add_field(fp, "PAGE", size=9)
     r = fp.add_run(" of ")
     _apply_run_format(r, size=9, color=BODY_BLACK)
-    add_field(fp, "NUMPAGES", size=9)
+    # SECTIONPAGES (this section only), not NUMPAGES (whole doc): the body is its
+    # own section with page numbering restarted at 1, so this excludes the cover
+    # and the last page reads "Page n of n" instead of "Page n-1 of n".
+    add_field(fp, "SECTIONPAGES", size=9)
     fp.add_run("\t")
     logo_run = fp.add_run()
     logo_run.add_picture(str(logo), width=Cm(2.2))

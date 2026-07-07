@@ -1,19 +1,15 @@
 # Karun Report Template — Word
 
-Generates a branded Karun report as an **editable Word `.docx`** (and,
-optionally, a PDF). English only (the Persian/RTL variant lives in the Typst
-approach). Built on `python-docx`.
+Generates a branded Karun report as an **editable Word `.docx`**. English only
+(the Persian/RTL variant lives in the Typst approach). Built on `python-docx`.
 
 ## Files
 
 | File / folder     | Edit?   | Purpose                                                |
 |-------------------|---------|--------------------------------------------------------|
 | `karun_report.py` | **No**  | The template engine: cover, header/footer, headings, TOC, toggles |
-| `export_pdf.py`   | **No**  | Optional `.docx` → `.pdf` via LibreOffice               |
 | `report.json`     | **Yes** | Your report content                                    |
 | `assets/`         | —       | Brand assets (`bg.jpeg`, `karun-en/fa.png`)            |
-| `examples/`       | —       | Worked example (`swift-product-vision.json` + figures) |
-| `samples/`        | —       | Sample output PDF                                      |
 
 ## Setup (once)
 
@@ -27,7 +23,6 @@ Output goes into the `build/` folder:
 
 ```sh
 python karun_report.py report.json "build/My Report.docx"
-python export_pdf.py "build/My Report.docx" "build/My Report.pdf"   # optional
 ```
 
 ## Writing a report — `report.json`
@@ -72,13 +67,10 @@ Rules:
 
 ## Getting the PDF
 
-`export_pdf.py` uses **LibreOffice** if installed (it updates the Table of
-Contents and page numbers on the way). If you don't have LibreOffice, just open
-the `.docx` in Microsoft Word and use **File → Save As → PDF**. (Or use the
-Typst approach for an instant, native PDF.)
-
-When you open the `.docx` in Word, it may prompt to **update fields** — say yes,
-so the Table of Contents and page numbers populate.
+Open the `.docx` in **Microsoft Word** and use **File → Save As → PDF**. When
+Word opens the file it may prompt to **update fields** — say yes, so the Table
+of Contents and page numbers populate. (For an instant, native PDF instead, use
+the Typst approach.)
 
 ## Notes
 

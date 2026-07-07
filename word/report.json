@@ -1,5 +1,5 @@
 {
-  "_comment": "EDIT THIS to create a report, then run: python karun_report.py report.json \"build/My Report.docx\" (output goes into build/). Set lang to 'en' (Persian/RTL is not supported in the Word path yet). access_level: 1=Internal 2=External 3=Public. confidentiality: 1=Normal 2=Confidential 3=Top Secret. See examples/swift-product-vision.json for a full worked example with figures.",
+  "_comment": "EDIT THIS to create a report, then run: python karun_report.py report.json \"build/My Report.docx\" (output goes into build/). Set lang to 'en' (Persian/RTL is not supported in the Word path yet). access_level: 1=Internal 2=External 3=Public. confidentiality: 1=Normal 2=Confidential 3=Top Secret.",
   "lang": "en",
   "meta": {
     "title": "Main Report Title",

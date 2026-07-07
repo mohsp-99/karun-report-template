@@ -191,9 +191,11 @@
 // -----------------------------------------------------------------------------
 #let make-header(meta, lang) = context {
   set text(size: 9pt, fill: black)
+  // start/end (not left/right) so the columns mirror correctly in RTL: the date
+  // hugs the outer reading-start edge and the title stays centered in both langs.
   grid(
     columns: (1fr, 2fr, 1fr),
-    align: (left + bottom, center + bottom, right + bottom),
+    align: (start + bottom, center + bottom, end + bottom),
     [#meta.date], [#meta.summary_title], [],
   )
   v(2pt, weak: true)
@@ -204,17 +206,20 @@
   let logo = logo-for(lang)
   let cur = counter(page).get().first()
   let total = counter(page).final().first()
-  // Cover is page 1 (unnumbered); body display = physical - 1, total = physical.
+  // The cover is an unnumbered page 1, so drop it from BOTH the current number
+  // and the total (physical - 1). The last page then reads "n of n", not "n-1 of n".
   let page-text = if is-en(lang) {
-    [Page #(cur - 1) of #total]
+    [Page #(cur - 1) of #(total - 1)]
   } else {
-    [صفحه #(cur - 1) از #total]
+    [صفحه #(cur - 1) از #(total - 1)]
   }
   line(length: 100%, stroke: 1pt + karun-blue)
   v(2pt, weak: true)
+  // start/end (not left/right) so in RTL the page number and logo hug the outer
+  // edges instead of colliding in the middle.
   grid(
     columns: (1fr, 1fr),
-    align: (left + horizon, right + horizon),
+    align: (start + horizon, end + horizon),
     text(size: 9pt)[#page-text],
     image(logo, height: 0.8cm),
   )

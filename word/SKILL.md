@@ -13,9 +13,8 @@ python-docx engine in **this skill's folder**. The user supplies only the
 
 ## Files (all paths are relative to this folder)
 - `report.json` — report content → **you edit/overwrite this** (or make a new .json)
-- `karun_report.py`, `export_pdf.py`, `assets/` — engine + brand assets → do not touch
-- `examples/swift-product-vision.json` — a full worked example with figures
-- `build/` — write the output `.docx` (and `.pdf`) here
+- `karun_report.py`, `assets/` — engine + brand assets → do not touch
+- `build/` — write the output `.docx` here
 
 ## Steps
 1. **Collect the content.** Gather the metadata and body. Infer structure from
@@ -27,18 +26,15 @@ python-docx engine in **this skill's folder**. The user supplies only the
    ```
    python karun_report.py report.json "build/<Report Title>.docx"
    ```
-4. **Optional PDF:**
-   ```
-   python export_pdf.py "build/<Report Title>.docx"
-   ```
-   Uses LibreOffice if present; otherwise tell the user to open the `.docx` in
-   Word and Save As PDF (or use the `karun-report-typst` skill for a native PDF).
+   - **If you can run shell commands here:** run it and report the output path.
+   - **If you cannot:** save the JSON and give the user the exact command.
+4. **Delivering a PDF?** The user exports it themselves: open the `.docx` in
+   Microsoft Word and use **File → Save As → PDF** (say yes to "update fields" so
+   the Table of Contents and page numbers populate). For a native PDF instead,
+   use the `karun-report-typst` skill.
 
-- **If you can run shell commands here:** run them and report the output path.
-- **If you cannot:** save the JSON and give the user the exact commands to run.
-
-**Done when:** the content JSON reflects the user's content and either the
-`.docx` is built in `build/` or the user has the exact build command.
+**Done when:** the content JSON reflects the user's content and the `.docx` is
+built in `build/` (or the user has the exact build command).
 
 ## Content JSON schema
 ```jsonc
@@ -82,8 +78,6 @@ python-docx engine in **this skill's folder**. The user supplies only the
 ## Notes
 - Requires `python-docx` (`pip install -r requirements.txt`) and the **Dubai**
   font for an exact match.
-- English only. For Persian/RTL or the highest-fidelity PDF, use the
-  `karun-report-typst` skill.
-- Opening the `.docx` in Word may prompt to "update fields" — that fills the
-  Table of Contents and page numbers; this is expected.
-- Detailed docs: `README.md`. Full example: `examples/swift-product-vision.json`.
+- English only. For Persian/RTL or a native PDF, use the `karun-report-typst`
+  skill.
+- Detailed docs: `README.md`.
