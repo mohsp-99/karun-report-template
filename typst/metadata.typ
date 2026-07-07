@@ -5,20 +5,20 @@
 
 #let meta = (
   // --- Titles -------------------------------------------------------------
-  title: "Main Report Title",            // large title on the cover
-  subtitle: "Report Subtitle",           // gray line under the title
-  summary_title: "Document Summary Title", // shown in the metadata table + header
+  title: "بازبینی جدول تلرانس کلاس b و مرور مدارک پروژه",            // large title on the cover
+  subtitle: "بازمحاسبه‌ی مستقل بر مبنای DIN 3960 و DIN 3967",           // gray line under the title
+  summary_title: "گزارش فنی: تأیید جدول کلاس b و پیامدهای مهندسی", // shown in the metadata table + header
 
   // --- Stakeholders -------------------------------------------------------
-  employer: "Recipient Name / Department / Company", // prepared for
-  producer: "Author Name / Department / Company",     // prepared by
+  employer: "دفتر فنی پروژه‌ی چرخ‌دنده", // prepared for
+  producer: "واحد مهندسی کیفیت کارون",     // prepared by
 
   // --- Classification -----------------------------------------------------
-  access_level: 3,     // 1 = Internal | 2 = External     | 3 = Public
-  confidentiality: 1,  // 1 = Normal   | 2 = Confidential | 3 = Top Secret
+  access_level: 1,     // 1 = Internal | 2 = External     | 3 = Public
+  confidentiality: 2,  // 1 = Normal   | 2 = Confidential | 3 = Top Secret
 
   // --- Identification -----------------------------------------------------
-  doc_id: "FILE-NAME-V01-20260101",
-  date: "2026/01/01",  // header/cover date (use YYYY/MM/DD, or Persian digits for fa)
+  doc_id: "GEAR-CLASSB-REV-V01-20260707",
+  date: "۱۴۰۵/۰۴/۱۶",  // header/cover date (use YYYY/MM/DD, or Persian digits for fa)
   year: 2026,          // copyright year on the cover footer
 )
