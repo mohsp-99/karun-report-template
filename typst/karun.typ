@@ -178,9 +178,13 @@
       text(size: 9pt, lang: "en", dir: ltr)[© #meta.year Karun, Iran])
 
     // "Agent-generated" stamp (only when an agent name is supplied).
+    // Placed opposite the title block (mirrored for RTL) to avoid overlap.
     #if agent != none {
-      place(top + right, dx: -1.3cm, dy: 5.1cm,
-        rotate(-8deg,
+      let stamp-edge = if english { right } else { left }
+      let stamp-dx = if english { -1.3cm } else { 1.3cm }
+      let stamp-rot = if english { -8deg } else { 8deg }
+      place(top + stamp-edge, dx: stamp-dx, dy: 5.1cm,
+        rotate(stamp-rot,
           box(
             stroke: 1.5pt + karun-blue,
             radius: 3pt,

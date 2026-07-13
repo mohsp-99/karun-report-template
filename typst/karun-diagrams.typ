@@ -453,9 +453,9 @@
 // value: number. bands: ((upper, color), …) covering min→max. label: what it is.
 // =============================================================================
 #let gauge(value, min: 0, max: 100, bands: none, label: none, unit: "", verdict: none) = {
-  let span = max - min
+  let span = if max > min { max - min } else { 1 }
   let clamped = calc.max(min, calc.min(max, value))
-  let pos = if span > 0 { (clamped - min) / span } else { 0 }
+  let pos = (clamped - min) / span
   let track-h = 0.72cm
 
   let track = box(width: 100%, height: track-h, radius: 5pt, clip: true, fill: dg-pale, {
