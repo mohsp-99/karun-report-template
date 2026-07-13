@@ -47,6 +47,26 @@ the user supplies only the content, never the layout.
   files in `images/`.
 - A blank line starts a new paragraph.
 
+## Diagrams (SmartArt-style, grounded)
+The template ships a diagram toolkit, **`karun-diagrams.typ`** — brand-consistent
+process flows, cycles, hierarchies, matrices, pyramids, bar charts, gauges,
+timelines, KPI tiles, and callouts. Use one when a described sequence, breakdown,
+comparison, or set of measurements would read better as a figure. Import it next
+to `karun.typ` and wrap each call in `diagram(...)`:
+
+```typ
+#import "karun-diagrams.typ": *
+...
+#diagram(
+  process-flow([Measure], [Derive], [Score], [Publish]),
+  caption: [ The analysis pipeline. ],
+)
+```
+
+Feed a tool **only** labels and numbers already in the report — diagrams
+visualize facts, they never invent them — and pick the tool whose shape matches
+the section. Full catalog + "which tool for which content" table: **`DIAGRAMS.md`**.
+
 ## Persian (RTL)
 Set `lang: "fa"` on all three setup lines and write the content in Persian.
 Direction, the Persian logo, labels, and page numbers switch automatically; the

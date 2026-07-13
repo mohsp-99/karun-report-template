@@ -125,7 +125,10 @@
 // -----------------------------------------------------------------------------
 // Title page (Typst port of titlepage.tex) — full-bleed, own layout.
 // -----------------------------------------------------------------------------
-#let title-page(meta, lang: "en") = {
+// `agent`: if set to an agent name (string), an "AGENT-GENERATED" stamp is
+// placed on the cover with that name as its sub-line. Leave `none` for a
+// human-authored report. Backward compatible: omitting it changes nothing.
+#let title-page(meta, lang: "en", agent: none) = {
   let english = is-en(lang)
   let logo = logo-for(lang)
   let h-edge = if english { left } else { right }
@@ -173,6 +176,24 @@
     // Copyright (bottom-right).
     #place(bottom + right, dx: -1.5cm, dy: -1.5cm,
       text(size: 9pt, lang: "en", dir: ltr)[© #meta.year Karun, Iran])
+
+    // "Agent-generated" stamp (only when an agent name is supplied).
+    #if agent != none {
+      place(top + right, dx: -1.3cm, dy: 5.1cm,
+        rotate(-8deg,
+          box(
+            stroke: 1.5pt + karun-blue,
+            radius: 3pt,
+            inset: (x: 9pt, y: 5pt),
+            fill: white,
+          )[
+            #set align(center)
+            #set text(lang: "en", dir: ltr)
+            #text(size: 9pt, weight: "bold", fill: karun-blue, tracking: 2pt)[AGENT-GENERATED]
+            #v(-3pt)
+            #text(size: 8pt, fill: karun-blue, style: "italic")[#agent]
+          ]))
+    }
   ]
 }
 
