@@ -32,6 +32,26 @@
 #let logo-for(lang) = if lang == "en" { "images/karun-en.png" } else { "images/karun-fa.png" }
 #let is-en(lang) = lang == "en"
 
+// Persian (Extended Arabic-Indic) digits for AUTO-GENERATED numbers only
+// (heading numbers, figure/table numbers, page numbers, footnotes). Content the
+// author types — technical codes, standards, quantities — is left untouched.
+#let _fa-digits = ("۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹")
+#let to-fa-digits(s) = {
+  let out = ""
+  for c in str(s).clusters() {
+    let i = "0123456789".position(c)
+    out += if i == none { c } else { _fa-digits.at(i) }
+  }
+  out
+}
+// Language-aware numbering patterns: Latin for English, Persian for Persian.
+#let heading-numbering(lang) = if is-en(lang) { "1.1" } else {
+  (..n) => n.pos().map(to-fa-digits).join(".")
+}
+#let counter-numbering(lang) = if is-en(lang) { "1" } else {
+  (..n) => to-fa-digits(n.pos().first())
+}
+
 // Metadata table labels per language.
 #let meta-labels(lang) = if lang == "en" {
   (
@@ -160,7 +180,9 @@
     #place(top + h-edge, dx: h-sign * 2.5cm, dy: 8.8cm,
       block(width: 16cm)[#meta-table(meta, lang: lang)])
 
-    // Footer logo (bottom-left), 1 cm inset.
+    // Footer logo (bottom-left), 1 cm inset. Matches the report language
+    // (Persian logo on Persian covers, English on English) for consistent
+    // branding. The disclaimer text beside it stays English by design.
     #place(bottom + left, dx: 1cm, dy: -1cm, image(logo, width: 2.5cm))
 
     // Disclaimer (LTR), to the right of the footer logo.
@@ -223,7 +245,7 @@
     align: (start + bottom, center + bottom, end + bottom),
     [#meta.date], [#meta.summary_title], [],
   )
-  v(2pt, weak: true)
+  v(7pt, weak: false)
   line(length: 100%, stroke: 1pt + karun-blue)
 }
 
@@ -236,7 +258,7 @@
   let page-text = if is-en(lang) {
     [Page #(cur - 1) of #(total - 1)]
   } else {
-    [صفحه #(cur - 1) از #(total - 1)]
+    [صفحه #to-fa-digits(cur - 1) از #to-fa-digits(total - 1)]
   }
   line(length: 100%, stroke: 1pt + karun-blue)
   v(2pt, weak: true)
@@ -256,29 +278,71 @@
 #let karun-report(lang: "en", meta: (:), body) = {
   let english = is-en(lang)
 
+  // English uses Dubai at 11pt. Persian uses B Nazanin — the traditional Persian
+  // book face — at 12pt (Persian book standard for the Nazanin family is 12–13;
+  // it sits small on the em, so it reads a touch smaller than 12pt Dubai). Dubai
+  // is kept as a glyph fallback for anything B Nazanin lacks.
   set text(
-    font: "Dubai",
-    size: 11pt,
+    font: if english { "Dubai" } else { ("B Nazanin", "Dubai") },
+    size: if english { 11pt } else { 12pt },
     lang: lang,
     dir: if english { ltr } else { rtl },
   )
-  set par(justify: true, leading: 0.7em, spacing: 0.95em)
+  // Render Latin-script runs (technical codes, standards, units — e.g. ANT02,
+  // 6063-T6, ISO 2768, 215 MPa) in Dubai. B Nazanin maps ASCII digits to Persian
+  // glyphs and has a weaker Latin, which would corrupt codes like "ANT02-A0000".
+  // Auto-generated Persian numbers use Persian codepoints, so they are untouched.
+  // No-op for English documents (already Dubai).
+  show regex("[A-Za-z0-9]+"): set text(font: "Dubai")
+  // Leading is font-specific: B Nazanin has a much taller line-box than Dubai, so
+  // the same em value yields looser lines. These values were measured to land both
+  // languages on the Persian book standard of ~1.5× line-spacing.
+  set par(
+    justify: true,
+    leading: if english { 0.95em } else { 0.55em },
+    spacing: if english { 1.15em } else { 1.5em },
+  )
 
-  // Section numbering and Karun-blue heading styling.
-  set heading(numbering: "1.1")
+  // Section numbering and Karun-blue heading styling. Spacing follows the common
+  // typographic rule (and Persian book-layout convention): the gap ABOVE a
+  // heading is ~2× the gap BELOW it, both sized in whole line-units of the body
+  // text (~17pt line) so they stay proportional — above ≈ 2 lines, below ≈ 1.3
+  // lines. Heading sizes track the Persian standard: main ~18, sub ~14, minor ~12.
+  set heading(numbering: heading-numbering(lang))
   show heading: it => {
     set text(fill: karun-blue, weight: "bold")
-    block(above: 16pt, below: 14pt, it)
+    block(above: 34pt, below: 22pt, it)
   }
-  show heading.where(level: 1): set text(size: 22pt)
+  show heading.where(level: 1): set text(size: 18pt)
   show heading.where(level: 2): set text(size: 14pt)
   show heading.where(level: 3): set text(size: 12pt)
 
-  // Figures: caption label bold + Karun-blue, body small italic.
-  set figure(numbering: "1")
+  // Footnote numbers follow the document language too.
+  set footnote(numbering: counter-numbering(lang))
+
+  // Figures & tables: caption label bold + Karun-blue, body small italic,
+  // centered. Tables are treated like LaTeX table floats — auto-numbered
+  // ("Table"/"جدول") with the caption ABOVE; images caption below.
+  set figure(numbering: counter-numbering(lang))
   show figure: set block(spacing: 16pt)
+  show figure.where(kind: image): set figure(supplement: if english { "Figure" } else { "شکل" })
+  show figure.where(kind: table): set figure(supplement: if english { "Table" } else { "جدول" })
+  // Table floats (LaTeX-style): caption ABOVE, plus a branded body style —
+  // shaded bold header row and subtle gray gridlines. Scoped to table figures
+  // so the cover's metadata table keeps its own booktabs look.
+  show figure.where(kind: table): it => {
+    set figure.caption(position: top)
+    set table(
+      inset: (x: 8pt, y: 6pt),
+      stroke: 0.5pt + rgb(214, 214, 214),
+      fill: (_, y) => if y == 0 { rgb(236, 236, 236) } else { none },
+      align: (if english { left } else { right }) + horizon,
+    )
+    show table.cell.where(y: 0): set text(weight: "bold")
+    it
+  }
   show figure.caption: it => {
-    set align(left)
+    set align(center)
     set text(size: 9pt)
     box[
       #text(weight: "bold", fill: karun-blue)[#it.supplement #context it.counter.display(it.numbering): ]
@@ -290,12 +354,14 @@
   show outline.entry.where(level: 1): set text(weight: "bold", fill: karun-blue)
 
   // Page geometry + running header/footer (cover overrides these to none).
+  // `numbering` here only feeds the Table of Contents page numbers (the visible
+  // running footer is the custom `make-footer` below). Persian digits for fa.
   set page(
     paper: "a4",
     margin: (top: 2.4cm, bottom: 3.0cm, left: 3.1cm, right: 2.5cm),
     header-ascent: 0.8cm,
     footer-descent: 1.2cm,
-    numbering: none,
+    numbering: if english { none } else { counter-numbering(lang) },
     header: make-header(meta, lang),
     footer: make-footer(meta, lang),
   )

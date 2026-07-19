@@ -10,8 +10,7 @@
 #      (clones the public repo if they are not already there),
 #   2. removes .git so the assistant's edits never open a pull request back
 #      to the source repository,
-#   3. installs the `typst` binary (native, brand-faithful PDF output),
-#   4. installs `python-docx` (the Word / .docx approach).
+#   3. installs the `typst` binary (native, brand-faithful PDF output).
 #
 # Re-running it is safe — each step is skipped if it is already satisfied.
 
@@ -23,7 +22,7 @@ echo "==> Setting up the Karun report template environment"
 
 # 1. Ensure the template files are in the current working directory. -----------
 #    (If the environment already checked the repo out, this is a no-op.)
-if [ ! -d typst ] || [ ! -d word ]; then
+if [ ! -d typst ]; then
   echo "==> Cloning template into $(pwd)"
   tmp="$(mktemp -d)"
   git clone --depth 1 "$REPO_URL" "$tmp"
@@ -55,20 +54,12 @@ else
   echo "==> typst already installed"
 fi
 
-# 4. Install the Word approach's Python dependency. ----------------------------
-echo "==> Installing python-docx"
-python3 -m pip install --quiet --upgrade pip 2>/dev/null || true
-python3 -m pip install --quiet -r word/requirements.txt \
-  || python3 -m pip install --quiet --user -r word/requirements.txt \
-  || python3 -m pip install --quiet --break-system-packages -r word/requirements.txt
-
-# 5. Verify. -------------------------------------------------------------------
+# 4. Verify. -------------------------------------------------------------------
 echo "==> Verifying installation"
 if command -v typst >/dev/null 2>&1; then
   typst --version
 else
   echo "    NOTE: typst is not on PATH — try \$HOME/.local/bin/typst"
 fi
-python3 -c "import docx; print('python-docx', docx.__version__)"
 
 echo "==> Done. The Karun report template is ready to use."

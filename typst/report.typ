@@ -16,7 +16,8 @@
 //   *bold*  _italic_  `code`
 //   - item             -> bullet list
 //   "quotes" --- dash  -> become curly quotes / em-dash automatically
-//   #figure(image("images/x.png", width: 100%), caption: [ ... ])
+//   #figure(image("images/x.png", width: 100%), caption: [ ... ])  -> caption below
+//   #figure(table(columns: 2, [A], [B], ...), caption: [ ... ])    -> table, caption ABOVE
 //   #heading(level: 1, numbering: none)[Title]  -> unnumbered, still in the TOC
 // =============================================================================
 

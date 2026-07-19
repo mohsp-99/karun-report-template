@@ -43,9 +43,14 @@ the user supplies only the content, never the layout.
   still listed in the Table of Contents.
 - `*bold*`, `_italic_`, `` `code` ``, and `- item` for bullet lists.
 - `"quotes"` and `---` auto-convert to curly quotes / em-dash.
-- `#figure(image("images/x.png", width: 100%), caption: [ … ])` — put figure
-  files in `images/`.
+- `#figure(image("images/x.png", width: 100%), caption: [ … ])` — image with the
+  caption **below**; put figure files in `images/`.
+- `#figure(table(columns: 2, [ … ], [ … ], …), caption: [ … ])` — a table with the
+  caption **above** (LaTeX-style), auto-numbered "Table"/«جدول». The branded table
+  look (shaded header, gridlines) is applied automatically — just supply the cells.
 - A blank line starts a new paragraph.
+- In Persian (`lang: "fa"`), auto-generated numbers (headings, figures/tables,
+  pages, footnotes) render in Persian digits; text you type stays as written.
 
 ## Diagrams (SmartArt-style, grounded)
 The template ships a diagram toolkit, **`karun-diagrams.typ`** — brand-consistent
@@ -69,9 +74,11 @@ the section. Full catalog + "which tool for which content" table: **`DIAGRAMS.md
 
 ## Persian (RTL)
 Set `lang: "fa"` on all three setup lines and write the content in Persian.
-Direction, the Persian logo, labels, and page numbers switch automatically; the
-cover's legal disclaimer stays in English by design.
+Direction, the **B Nazanin** font (12pt), the Persian logo, labels, Persian
+numerals, and page numbers all switch automatically. Latin technical codes you
+type (e.g. `ANT02-A0000`, `ISO 2768`, `215 MPa`) stay in Latin/Dubai on their
+own — just type them normally. The cover's legal disclaimer stays English by
+design.
 
 ## More
 - Full docs: `README.md`.
-- Need an editable Word (.docx) instead? Use the `karun-report-word` skill.

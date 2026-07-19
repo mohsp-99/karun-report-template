@@ -1,3 +1,0 @@
-python-docx>=1.1.0
-# To get a PDF, build the .docx and export it from Microsoft Word
-# (File > Save As > PDF), or use the Typst approach for a native PDF.
