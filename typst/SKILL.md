@@ -1,84 +1,124 @@
 ---
 name: karun-report-typst
-description: Creates a branded Karun report as a PDF (English or Persian/RTL) from content the user provides. Use when the user wants to write or produce a Karun report, whitepaper, executive summary, product/strategy document, or any branded Karun PDF.
+description: Creates a branded Karun report PDF (English or Persian/RTL) from user-provided content.
 ---
 
 # Karun Report — Typst (PDF)
 
-Turn the user's content into a branded Karun PDF. You edit two files and compile;
-the user supplies only the content, never the layout.
+Use user-provided content and let the template own typography, RTL behavior,
+tables, branding, and pagination.
 
-## What you touch
-- **`metadata.typ`** — cover/header fields (title, client, date, classification…).
-- **`report.typ`** — the report body, plus the `lang` setting (`"en"` or `"fa"`).
-- **Nothing else.** `karun.typ` (engine), `images/` (brand assets), and `fonts/`
-  (the Dubai font) produce the branding and layout — leave them alone.
+## Boundaries
 
-## Steps
-1. **Gather content.** The metadata (title, subtitle, summary title, recipient,
-   author, access level, confidentiality, document ID, date) and the body. Infer
-   structure from whatever the user pastes; ask only for what's missing, and
-   confirm the language.
-2. **Fill in `metadata.typ`** — every field.
-   `access_level`: 1 Internal / 2 External / 3 Public.
-   `confidentiality`: 1 Normal / 2 Confidential / 3 Top Secret.
-3. **Write `report.typ`** — set `lang` on the three setup lines, then replace the
-   placeholder content using the markup below.
-4. **Compile** into `build/`:
+- Routine report generation may edit `metadata.typ`, `report.typ`, and add
+  user-provided report assets to `images/`.
+- Edit engines, fonts, brand assets, and shared examples only for an explicit
+  template-maintenance request; add a focused regression example when relevant.
+- Never invent facts, numbers, sources, metadata, quotations, diagram labels, or
+  conclusions. Infer organization, not content. Ask for material missing data or
+  leave an explicit placeholder if the user prefers.
+- Preserve unrelated user work. Never use a wholesale history revert for a
+  focused correction.
+
+## Workflow
+
+1. Determine whether the report is English or Persian. Collect only supplied
+   metadata and body content. Classification values are `access_level`: 1
+   Internal, 2 External, 3 Public; and `confidentiality`: 1 Normal, 2
+   Confidential, 3 Top Secret.
+2. Fill `metadata.typ` using only supplied or user-confirmed values.
+3. In `report.typ`, set the same language on all three setup calls:
+
+   ```typ
+   #show: karun-report.with(lang: "fa", meta: meta)
+   #title-page(meta, lang: "fa")
+   #contents-page(lang: "fa")
    ```
-   typst compile --font-path fonts report.typ "build/<Report Title>.pdf"
+
+   Use `"en"` on all three for English. Mixed values are invalid.
+4. Replace the placeholder body. Preserve supplied meaning unless the user asks
+   for editing or rewriting.
+5. For Persian reports, scan only user-authored Persian content in `report.typ`
+   and `metadata.typ` and normalize mistaken characters to the template's
+   ی-style spelling: `ة` becomes `ی`, and the hamza ezafe forms `هٔ` and `ۀ`
+   become `ه‌ی` (heh + ZWNJ + ی), e.g. `نمونهٔ` → `نمونه‌ی`. This must happen
+   in the source — the engine performs no substitution (render-time replacement
+   breaks letter joining, and B Nazanin renders `هٔ` as empty boxes). Do not
+   globally alter engine code, identifiers, file names, or intentionally quoted
+   Arabic text.
+6. Compile from `typst/`:
+
+   ```text
+   typst compile --font-path fonts report.typ build/report.pdf
    ```
-   `--font-path fonts` applies the bundled Dubai font, so no system install is
-   needed. If it won't compile, read the error, fix the markup, and retry. If
-   `typst` is "not recognized", it isn't on PATH — restart the terminal/app or
-   use its full path. If you can't run commands, save the files and hand the user
-   the exact command.
 
-**Done when** both files reflect the user's content and the PDF is in `build/`
-(or the user has the exact command to run).
+   `--font-path fonts` is required. Fix relevant errors and warnings, then
+   inspect the PDF or rendered pages for RTL direction, font fallback, clipping,
+   isolated headings, crowded tables, and blank pages. Recompile after fixes.
+   If Typst is unavailable, preserve the source and give the exact command; do
+   not claim PDF validation.
 
-## Markup (inside `report.typ`)
-- `= Section`, `== Subsection` — auto-numbered, Karun-blue headings.
-- `#heading(level: 1, numbering: none)[Executive Summary]` — unnumbered heading,
-  still listed in the Table of Contents.
-- `*bold*`, `_italic_`, `` `code` ``, and `- item` for bullet lists.
-- `"quotes"` and `---` auto-convert to curly quotes / em-dash.
-- `#figure(image("images/x.png", width: 100%), caption: [ … ])` — image with the
-  caption **below**; put figure files in `images/`.
-- `#figure(table(columns: 2, [ … ], [ … ], …), caption: [ … ])` — a table with the
-  caption **above** (LaTeX-style), auto-numbered "Table"/«جدول». The branded table
-  look (shaded header, gridlines) is applied automatically — just supply the cells.
-- A blank line starts a new paragraph.
-- In Persian (`lang: "fa"`), auto-generated numbers (headings, figures/tables,
-  pages, footnotes) render in Persian digits; text you type stays as written.
+## Markup and pagination
 
-## Diagrams (SmartArt-style, grounded)
-The template ships a diagram toolkit, **`karun-diagrams.typ`** — brand-consistent
-process flows, cycles, hierarchies, matrices, pyramids, bar charts, gauges,
-timelines, KPI tiles, and callouts. Use one when a described sequence, breakdown,
-comparison, or set of measurements would read better as a figure. Import it next
-to `karun.typ` and wrap each call in `diagram(...)`:
+- `= Section` and `== Subsection` create numbered Karun-blue headings.
+- `#heading(level: 1, numbering: none)[Executive Summary]` is unnumbered but
+  remains in the table of contents.
+- Use `*bold*`, `_italic_`, `` `code` ``, `- item`, and blank-line paragraphs.
+- Use `#figure(image("images/x.png", width: 100%), caption: [ ... ])` for an
+  image with its caption below it.
+- Put `#keep-with-next[Short lead-in.]` immediately before its figure or table
+  so the lead-in is not stranded at the bottom of a page.
+- Wrap compact content that must stay on one page in `#keep-together[...]`. Do
+  not use this unbreakable helper around content too tall to fit on a page.
+
+## Tables
+
+Create report tables as table figures and identify their header:
 
 ```typ
-#import "karun-diagrams.typ": *
-...
-#diagram(
-  process-flow([Measure], [Derive], [Score], [Publish]),
-  caption: [ The analysis pipeline. ],
+#figure(
+  table(
+    columns: 3,
+    table.header([Item], [Owner], [Status]),
+    [Measurement], [Engineering], [Complete],
+  ),
+  caption: [Project status.],
 )
 ```
 
-Feed a tool **only** labels and numbers already in the report — diagrams
-visualize facts, they never invent them — and pick the tool whose shape matches
-the section. Full catalog + "which tool for which content" table: **`DIAGRAMS.md`**.
+The engine automatically applies Karun blue, white header text, blue-tinted
+rules, smaller table type, and slightly smaller Latin text inside Persian
+reports. Do not reproduce these styles inline or manually resize Latin terms.
 
-## Persian (RTL)
-Set `lang: "fa"` on all three setup lines and write the content in Persian.
-Direction, the **B Nazanin** font (12pt), the Persian logo, labels, Persian
-numerals, and page numbers all switch automatically. Latin technical codes you
-type (e.g. `ANT02-A0000`, `ISO 2768`, `215 MPa`) stay in Latin/Dubai on their
-own — just type them normally. The cover's legal disclaimer stays English by
-design.
+Use `#keep-together[...]` for a genuinely short intro/table unit. Ordinary table
+figures stay intact. A table too tall for one page must use `#long-table[...]`
+and repeat its explicit header:
 
-## More
-- Full docs: `README.md`.
+```typ
+#long-table[
+  #figure(
+    table(
+      columns: 3,
+      table.header(repeat: true, [Item], [Owner], [Status]),
+      [Measurement], [Engineering], [Complete],
+      // More supplied rows ...
+    ),
+    caption: [Project status.],
+  )
+]
+```
+
+Never force a multi-page table into `#keep-together[...]`.
+
+## Diagrams and Persian / RTL
+
+For diagrams, read `DIAGRAMS.md` and use only labels and values already in the
+report. Diagrams visualize supplied facts; they never invent them.
+
+For Persian, set `lang: "fa"` on all three setup calls. The engine automatically
+selects RTL layout, B Nazanin body text, Persian branding/labels/numbers,
+smaller Dubai-rendered Latin runs, and branded tables. Type tokens such as
+`ANT02-A0000`, `ISO 2768`, and `215 MPa` normally; do not fake direction with
+spaces or Unicode controls. The cover legal disclaimer stays English by design.
+
+For extended reference, read `README.md` and `DIAGRAMS.md` here.

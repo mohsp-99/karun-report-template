@@ -17,8 +17,12 @@
 //   - item             -> bullet list
 //   "quotes" --- dash  -> become curly quotes / em-dash automatically
 //   #figure(image("images/x.png", width: 100%), caption: [ ... ])  -> caption below
-//   #figure(table(columns: 2, [A], [B], ...), caption: [ ... ])    -> table, caption ABOVE
+//   #figure(table(columns: 2, table.header([A], [B]), ...),
+//     caption: [ ... ])                                           -> table, caption ABOVE
 //   #heading(level: 1, numbering: none)[Title]  -> unnumbered, still in the TOC
+//   #keep-with-next[Intro.]                  -> keep intro with the next item
+//   #keep-together[Short prose + table]      -> keep a compact group on one page
+//   #long-table[#figure(table(...))]         -> allow a genuine long table to split
 // =============================================================================
 
 #import "karun.typ": *
@@ -56,4 +60,15 @@ A subsection with a bullet list:
 // #figure(
 //   image("images/your-figure.png", width: 100%),
 //   caption: [ Your caption. Figures are auto-numbered and listed nowhere else. ],
+// )
+
+// Example table (use table.header so a long table can repeat its header):
+// #figure(
+//   table(
+//     columns: (1fr, 2fr),
+//     table.header([Item], [Finding]),
+//     [A], [First finding],
+//     [B], [Second finding],
+//   ),
+//   caption: [ Example findings. ],
 // )

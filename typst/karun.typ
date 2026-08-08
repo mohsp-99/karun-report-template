@@ -52,6 +52,16 @@
   (..n) => to-fa-digits(n.pos().first())
 }
 
+// Page-cohesion helpers for report authors. Use `keep-with-next` around a short
+// introduction, `keep-together` around a compact group, and `long-table` around
+// a table figure that must be allowed to span pages.
+#let keep-with-next(body) = block(sticky: true, body)
+#let keep-together(body) = block(breakable: false, body)
+#let long-table(body) = {
+  show figure.where(kind: table): set block(breakable: true)
+  body
+}
+
 // Metadata table labels per language.
 #let meta-labels(lang) = if lang == "en" {
   (
@@ -110,35 +120,35 @@
 }
 
 // -----------------------------------------------------------------------------
-// Metadata table (booktabs-style: thick top/bottom rules, thin inner rules)
+// Metadata table (booktabs-style: thick top/bottom rules, thin brand-blue rules)
 // -----------------------------------------------------------------------------
 #let meta-table(meta, lang: "en") = {
   let L = meta-labels(lang)
   let row = (label, value) => (
     text(weight: "bold")[#label], value,
   )
-  set text(size: 11pt)
+  set text(size: if is-en(lang) { 10pt } else { 11pt })
   table(
     columns: (auto, 1fr),
     stroke: none,
     inset: (x: 6pt, y: 7pt),
     align: (if is-en(lang) { left } else { right }) + horizon,
 
-    table.hline(stroke: 1.2pt + black),
+    table.hline(stroke: 1.2pt + karun-blue),
     ..row(L.title, text(weight: "bold")[#meta.summary_title]),
-    table.hline(stroke: 0.4pt + black),
+    table.hline(stroke: 0.4pt + karun-blue),
     ..row(L.employer, meta.employer),
-    table.hline(stroke: 0.4pt + black),
+    table.hline(stroke: 0.4pt + karun-blue),
     ..row(L.producer, meta.producer),
-    table.hline(stroke: 0.4pt + black),
+    table.hline(stroke: 0.4pt + karun-blue),
     ..row(L.access, access-level(meta.access_level, lang: lang)),
-    table.hline(stroke: 0.4pt + black),
+    table.hline(stroke: 0.4pt + karun-blue),
     ..row(L.confidentiality, confidentiality-level(meta.confidentiality, lang: lang)),
-    table.hline(stroke: 0.4pt + black),
+    table.hline(stroke: 0.4pt + karun-blue),
     ..row(L.id, meta.doc_id),
-    table.hline(stroke: 0.4pt + black),
+    table.hline(stroke: 0.4pt + karun-blue),
     ..row(L.date, meta.date),
-    table.hline(stroke: 1.2pt + black),
+    table.hline(stroke: 1.2pt + karun-blue),
   )
 }
 
@@ -288,12 +298,21 @@
     lang: lang,
     dir: if english { ltr } else { rtl },
   )
+  // NOTE: ی-style spelling (ة → ی, and هٔ/ۀ → ه‌ی) is an EDITORIAL step done in
+  // the source text (see SKILL.md), never a render-time substitution here. A
+  // string show rule splits the word into separate text elements and Typst does
+  // not reshape across that boundary, so joins break («بررسی» → «بررس‌ی»,
+  // «نمونه‌ی» → «نمون‌هی») in both fonts. B Nazanin additionally has no glyph
+  // for the combining hamza of هٔ (renders tofu boxes), so wrong forms must
+  // simply never reach the engine.
   // Render Latin-script runs (technical codes, standards, units — e.g. ANT02,
   // 6063-T6, ISO 2768, 215 MPa) in Dubai. B Nazanin maps ASCII digits to Persian
   // glyphs and has a weaker Latin, which would corrupt codes like "ANT02-A0000".
-  // Auto-generated Persian numbers use Persian codepoints, so they are untouched.
-  // No-op for English documents (already Dubai).
-  show regex("[A-Za-z0-9]+"): set text(font: "Dubai")
+  // Auto-generated Persian numbers use Persian codepoints, so they are untouched;
+  // the slight size reduction improves the color of mixed Persian paragraphs.
+  show regex("[A-Za-z0-9]+"): it => if english { it } else {
+    text(font: "Dubai", size: 0.92em, it)
+  }
   // Leading is font-specific: B Nazanin has a much taller line-box than Dubai, so
   // the same em value yields looser lines. These values were measured to land both
   // languages on the Persian book standard of ~1.5× line-spacing.
@@ -311,7 +330,7 @@
   set heading(numbering: heading-numbering(lang))
   show heading: it => {
     set text(fill: karun-blue, weight: "bold")
-    block(above: 34pt, below: 22pt, it)
+    block(above: 34pt, below: 22pt, sticky: true, it)
   }
   show heading.where(level: 1): set text(size: 18pt)
   show heading.where(level: 2): set text(size: 14pt)
@@ -327,18 +346,23 @@
   show figure: set block(spacing: 16pt)
   show figure.where(kind: image): set figure(supplement: if english { "Figure" } else { "شکل" })
   show figure.where(kind: table): set figure(supplement: if english { "Table" } else { "جدول" })
+  // Ordinary table figures stay intact with their captions. Authors can wrap a
+  // genuinely long one in `long-table[...]`; repeatable `table.header` rows then
+  // continue automatically on subsequent pages.
+  show figure.where(kind: table): set block(breakable: false)
   // Table floats (LaTeX-style): caption ABOVE, plus a branded body style —
-  // shaded bold header row and subtle gray gridlines. Scoped to table figures
+  // blue header row and subtle blue-tinted gridlines. Scoped to table figures
   // so the cover's metadata table keeps its own booktabs look.
   show figure.where(kind: table): it => {
     set figure.caption(position: top)
+    show table: set text(size: if english { 10pt } else { 10.5pt })
     set table(
       inset: (x: 8pt, y: 6pt),
-      stroke: 0.5pt + rgb(214, 214, 214),
-      fill: (_, y) => if y == 0 { rgb(236, 236, 236) } else { none },
+      stroke: 0.5pt + karun-blue.lighten(70%),
+      fill: (_, y) => if y == 0 { karun-blue } else { none },
       align: (if english { left } else { right }) + horizon,
     )
-    show table.cell.where(y: 0): set text(weight: "bold")
+    show table.cell.where(y: 0): set text(weight: "bold", fill: white)
     it
   }
   show figure.caption: it => {
