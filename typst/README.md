@@ -8,6 +8,7 @@ and Persian (RTL). This is a Typst port of the original Karun LaTeX template.
 | File / folder      | Edit?   | Purpose                                              |
 |--------------------|---------|-----------------------------------------------------|
 | `karun.typ`        | **No**  | The template engine: colors, cover, header/footer, headings, TOC, classification toggles |
+| `karun-fa-style.typ` | **No** | Persian companion library for hand-numbered RTL reports (see `FA-STYLE.md`) |
 | `metadata.typ`     | **Yes** | Per-report metadata (title, client, date, classification…) |
 | `report.typ`       | **Yes** | Your report content                                  |
 | `fonts/`           | **No**  | Bundled Dubai font (applied via `--font-path fonts`) |
@@ -111,6 +112,12 @@ Persian source text must use ی-style spelling directly: never Arabic `ة`
 replacing characters at render time breaks Arabic letter joining, and B Nazanin
 has no glyph for the combining hamza — so wrong forms must be fixed in the
 source before compiling.
+
+For Persian reports in the hand-numbered, Dubai-body house style (sections
+numbered in the heading text, table captions above / figure captions below, the
+`sn`/`lt`/`nb` bidi discipline), use the `karun-fa-style.typ` companion library
+and follow `FA-STYLE.md`. The compact reference is
+`examples/fa-style-regression.typ`.
 
 ## Notes
 
