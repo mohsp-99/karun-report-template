@@ -121,4 +121,16 @@ smaller Dubai-rendered Latin runs, and branded tables. Type tokens such as
 `ANT02-A0000`, `ISO 2768`, and `215 MPa` normally; do not fake direction with
 spaces or Unicode controls. The cover legal disclaimer stays English by design.
 
-For extended reference, read `README.md` and `DIAGRAMS.md` here.
+## Hand-numbered Persian style (karun-fa-style)
+
+When the user asks for a Persian report in the hand-numbered house style —
+section numbers written in the heading text, Dubai body type, table captions
+above / figure captions below — import `karun-fa-style.typ` after the cover and
+contents pages and follow `FA-STYLE.md` exactly: it prescribes the setup-block
+order (a `set text(font: "Dubai")` BEFORE `title-page`, or the cover stays in
+B Nazanin), the per-report helpers, the `sn[]`/`lt[]`/`nb[]` bidi discipline
+for compound numbers and technical tokens, and the acceptance checks. The
+engine `karun.typ` still must not be modified. The compact living reference is
+`examples/fa-style-regression.typ`.
+
+For extended reference, read `README.md`, `DIAGRAMS.md`, and `FA-STYLE.md` here.

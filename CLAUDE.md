@@ -11,10 +11,13 @@ workflow reference; `typst/README.md` and `typst/DIAGRAMS.md` are extended docs.
 - `typst/metadata.typ` — cover/header fields for the current report.
 - `typst/report.typ` — the report body and the `lang` setting.
 - `typst/karun-diagrams.typ` + `typst/DIAGRAMS.md` — SmartArt-style diagram toolkit.
+- `typst/karun-fa-style.typ` + `typst/FA-STYLE.md` — Persian companion library
+  and conventions for hand-numbered RTL reports (Dubai body, `sn`/`lt`/`nb`
+  bidi discipline).
 - `typst/fonts/` — bundled Dubai (English/Latin) and B Nazanin (Persian) fonts.
 - `typst/images/` — brand assets plus user-supplied report figures.
 - `typst/examples/` — regression examples (`typography-regression.typ`,
-  `diagram-gallery.typ`).
+  `diagram-gallery.typ`, `fa-style-regression.typ`).
 - `typst/build/` — compile output, gitignored.
 
 ## What to edit
