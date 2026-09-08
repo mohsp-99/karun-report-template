@@ -24,14 +24,7 @@
 // YOUR CONTENT STARTS HERE
 // ===========================================================================
 
-#heading(level: 1, numbering: none)[About This Document]
-
-The external frame ATTEST's positioning is defended against, in the way
-`scor-reference.md` serves TRACE in the
-#link("https://github.com/Micheal-Friday/Trace")[sibling repository].
-Commissioned 8 September 2026 across three research axes: the
-management-system frames, the measurement-validity literature, and the
-governance of production performed by someone else.
+#heading(level: 1, numbering: none)[Provenance]
 
 #quote(block: true)[
   *Provenance, stated once and load-bearing.* `iso.org` returned HTTP 403 on
@@ -56,14 +49,15 @@ governance of production performed by someone else.
   and 10 are generic management-system scaffolding shared with ISO 14001,
   45001 and 27001. Almost all quality-specific content sits in *clause 8 and
   9.1*.
-- *So ATTEST's positioning must be clause-anchored, not process-anchored.*
-  TRACE could say _"we are the supply-side intelligence layer of the Source
-  pillar."_ ATTEST's equivalent is _"we generate the objective evidence
-  clauses 8.6 and 8.7 require."_
+- *So positioning must be clause-anchored, not process-anchored.* There is
+  no pillar to claim and no process region to occupy. The move available
+  instead is to name the obligations the work discharges: _"ATTEST generates
+  the objective evidence clause 8.6 requires before release, and the record
+  clause 8.7 requires when release is refused."_
 - *The anchor is the 8.4 → 8.6 → 8.7 chain* — control of externally provided
   processes, release of product, control of nonconforming output. It
   survives in some form under IATF 16949, AS9100 and ISO 13485 alike.
-- *Quality needs two axes where supply chain needed one.* Alongside the
+- *Quality has two axes, not one.* Alongside the
   management-system axis sits a *measurement-validity axis* — VIM, GUM,
   ISO 14253-1, ILAC-G8 — that governs whether a recorded number means
   anything. Supply chain has no equivalent literature because it has no
@@ -131,10 +125,14 @@ governance of production performed by someone else.
 
 == Is there a SCOR for quality? No — and the shape of the "no" matters
 
-SCOR works for TRACE because it is a _process reference model_: it names
-processes, decomposes them into levels, and attaches standard metrics, so a
-system can claim a region of it and disclaim the rest. Quality management
-has produced nothing equivalent. What exists instead:
+The comparison is worth making because a neighbouring discipline does have
+one. SCOR — the ASCM/APICS Supply Chain Operations Reference model — is a
+_process reference model_: it names processes, decomposes them into levels,
+and attaches standard metrics, so a system can claim a region of it and
+disclaim the rest. That is what makes a scope statement checkable rather
+than rhetorical.
+
+Quality management has produced nothing equivalent. What exists instead:
 
 #figure(
   table(
@@ -189,8 +187,7 @@ evaluation · 10 Improvement*.
 Clauses 4–7, 9 and 10 are near-identical across ISO management-system
 standards — which is exactly why they can be integrated into one system, and
 exactly why they carry no quality-specific content. Within clause 8, the
-relevant chain _(all clause numbers secondary-sourced — see the provenance
-banner)_:
+relevant chain _(all clause numbers secondary-sourced — see banner)_:
 
 #figure(
   table(
@@ -251,7 +248,7 @@ regulatory obligations — and *deliberately opted out of the Harmonized
 Structure* the others share. That opt-out is decent evidence against any
 claim that one frame fits all quality domains.
 
-== The measurement-validity axis — the literature supply chain has no equivalent of
+== The measurement-validity axis — the second body of literature
 
 ATTEST turns physical parts into numbers. A separate body of standards
 governs whether those numbers mean anything.
@@ -573,9 +570,9 @@ positioning, not choices already made.
 
 = Caveats
 
-- *No ISO or IATF clause was read from primary text.* See the provenance
-  banner. Every clause number here needs verification against a licensed
-  copy before it is quoted to an auditor.
+- *No ISO or IATF clause was read from primary text.* See the banner. Every
+  clause number here needs verification against a licensed copy before it is
+  quoted to an auditor.
 - *ISO 9001’s sixth edition is expected 16 September 2026* — days after
   this was written. The FDIS ballot close (9 July 2026) is primary-sourced;
   the publication date is not.
