@@ -5,9 +5,9 @@
 
 #let meta = (
   // --- Titles -------------------------------------------------------------
-  title: "Quality Management",                       // large title on the cover
-  subtitle: "Reference Frame for ATTEST",            // gray line under the title
-  summary_title: "QMS Reference",                    // shown in the metadata table + header
+  title: "The Structure of Quality Management as a Discipline", // large title on the cover
+  subtitle: "A Reference Study for the ATTEST Product Definition", // gray line under the title
+  summary_title: "QMS Reference Study",  // shown in the metadata table + header
 
   // --- Stakeholders -------------------------------------------------------
   employer: "ATTEST",          // prepared for

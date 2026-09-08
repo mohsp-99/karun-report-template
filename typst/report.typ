@@ -24,571 +24,777 @@
 // YOUR CONTENT STARTS HERE
 // ===========================================================================
 
-#heading(level: 1, numbering: none)[Provenance]
+// Cross-reference to a numbered section, rendered as "§3.4" to match the
+// source document's own citation style.
+#let secref(l) = [§#ref(l, supplement: none)]
 
-#quote(block: true)[
-  *Provenance, stated once and load-bearing.* `iso.org` returned HTTP 403 on
-  every fetch and the IATF site was unreachable, as in previous passes. *No
-  ISO or IATF clause number in this document was read from the standard's own
-  text.* All are reconstructed from convergent secondary sources —
-  registrars, certification bodies, training providers — and must be verified
-  against a licensed copy before being quoted to an auditor. The exceptions,
-  confirmed from primary sources and marked inline below, are the VIM
-  definitions, NIST's traceability policy, the ISO/TC 176/SC 2 committee
-  page, and the AIAG CQI catalogue.
+// A reference URL: clickable, and allowed to wrap at its separators so long
+// links do not overflow the text block.
+#let ref-url(u) = link(
+  u,
+  u.replace("/", "/\u{200B}").replace("-", "-\u{200B}").replace(".", ".\u{200B}"),
+)
+
+*A reference study of the frameworks, standards and vocabulary governing
+industrial quality management, conducted to establish the external frame
+against which the ATTEST product definition will be defended.*
+
+Research conducted 8 September 2026.
+
+#heading(level: 1, numbering: none)[Executive Summary]
+
+This study set out to identify the reference framework for quality
+management — the equivalent, for this discipline, of a governing process
+model that names its processes, decomposes them into levels, and permits a
+system to claim one region of the discipline and disclaim the rest.
+
+*No such framework exists.* Quality management has instead produced several
+partial frameworks that address different axes of the discipline and do not
+compete with one another. This is the study's principal finding, and it
+determines how the product definition must be written: a scope statement for
+a quality application cannot claim a region of a process model, because no
+authoritative process model is available to be divided.
+
+Four further findings follow from that structure.
+
+First, *ISO 9001 is a requirements standard, not a process model.* Its
+clauses 4 to 7, 9 and 10 constitute a generic management-system structure
+shared with unrelated standards; substantively all quality-specific content
+is concentrated in clause 8 and clause 9.1. A product definition may
+therefore be anchored to specific obligations — principally the sequence of
+clauses 8.4, 8.6 and 8.7 — rather than to a process region.
+
+Second, *the discipline has two axes rather than one.* Alongside the
+management-system axis sits a substantial body of metrological literature
+governing whether a recorded measurement carries meaning at all. This
+literature has no counterpart in adjacent operational disciplines, and it is
+the axis on which an inspection-recording system principally operates.
+
+Third, *the proposition that a measured value lying inside a drawing
+tolerance constitutes a verdict is incorrect.* It is one specific decision
+rule, termed simple acceptance, applied without disclosure. The metrological
+literature is unanimous that a conformity statement requires the measurement
+uncertainty, the decision rule applied, and the acceptance limit as a value
+distinct from the tolerance limit. A record retaining only a value and a
+pass/fail flag cannot support a defensible verdict at the specification
+boundary.
+
+Fourth, *outsourcing production does not transfer accountability for
+conformity, and the standards do not specify how much verification is
+sufficient.* They establish the obligation and enumerate the categories of
+control available. The extent of verification is determined by contract, by
+customer requirement, and by the organisation's own documented risk
+assessment.
+
+A fifth finding constrains the product materially. *Special processes —
+those whose output cannot be fully verified by subsequent inspection of the
+product — cannot be discharged by receiving inspection at any level of
+rigour.* Where such a process is performed by a third party, the frameworks
+direct the organisation toward process evidence rather than product
+measurement.
+
+= Purpose and Scope
+
+The study addresses one question: what is the standard structure of quality
+management as a discipline, and what vocabulary does that structure provide
+for defining the scope of a quality application?
+
+*In scope.* The frameworks that decompose quality management; the position
+of inspection and verification within them; the metrological literature
+governing measurement validity; the governance of manufacturing processes
+performed by external parties; and the terminology a product definition and
+data model will both require.
+
+*Out of scope.* Product benchmarking, which is the subject of a separate
+study; the internal requirements of the ATTEST product; and any decision as
+to what the product will do. Under the research conventions this project has
+adopted, a study of this kind reports evidence and does not record choices.
+
+The organisational context is a business that designs and sources
+manufactured parts, outsources all production to independent machine shops,
+inspects the delivered parts, and is accountable to its own customers —
+including automotive customers — for their conformity.
+
+= Methodology
+
+The study was conducted across three parallel lines of enquiry, each
+independently sourced and subsequently reconciled:
+
++ the management-system frameworks, including ISO 9001 and its structure,
+  the automotive product-quality frameworks, and the module taxonomy adopted
+  by commercial quality software;
++ the metrological literature governing measurement validity, uncertainty
+  and conformity assessment;
++ the governance of outsourced manufacturing processes, including the
+  automotive special-process assessment regime.
+
+== Source hierarchy and access
+
+The texts of ISO and IATF standards are published under licence and were not
+available to this study. Where a clause is cited, the citation derives from
+convergent secondary sources — certification bodies, registrars, accredited
+training providers and standards-adjacent publishers — rather than from the
+standard itself. *Every clause reference in this report should be verified
+against a licensed copy before it is quoted in an audit or a contract.*
+
+A number of sources were, by contrast, available in full and are treated as
+primary:
+
+- the International Vocabulary of Metrology, consulted through the annotated
+  edition published by the Bureau International des Poids et Mesures;
+- the National Institute of Standards and Technology's published policy on
+  metrological traceability;
+- the ISO/TC 176/SC 2 committee's own record of the ISO 9001 revision
+  ballot;
+- the AIAG catalogue of core-tool and special-process publications.
+
+Findings resting on primary sources are identified as such at the point of
+use. Findings resting on secondary sources carry no marker; readers should
+assume secondary sourcing unless stated otherwise.
+
+== Treatment of unverified material
+
+Consistent with this project's research conventions, an item recorded as
+unverified indicates that the study could not confirm it from a primary
+source. It does not indicate that the item is false. Where published figures
+conflict, both are recorded, with their sources, rather than reconciled or
+averaged.
+
+= Findings
+
+== The discipline has no unified process reference model
+
+The comparison worth drawing is with an adjacent operational discipline that
+does possess one. The Supply Chain Operations Reference model, maintained by
+ASCM, names the processes of its discipline, decomposes them into levels and
+attaches standard performance metrics. A system operating in that discipline
+can therefore state which region of the model it occupies and which it does
+not, and the statement is checkable.
+
+Quality management has produced no equivalent. Five candidate frameworks
+were examined:
+
+#figure(
+  table(
+    columns: (1fr, 1.1fr, 1.05fr, 1fr),
+    table.header([Framework], [Decomposes], [Suited to], [Cannot express]),
+    [ISO 9001 and the Harmonized Structure],
+    [A management system into ten clauses, seven of them certifiable],
+    [Auditable, cross-industry requirements language],
+    [Quality work as named process steps],
+
+    [AIAG Advanced Product Quality Planning],
+    [Product launch into five phases with defined outputs],
+    [The closest structural analogue available; the language of automotive
+     customer audits],
+    [Anything beyond launch; it does not address ongoing production],
+
+    [The AIAG core tools],
+    [A set of instruments — PPAP, FMEA, MSA, SPC],
+    [Enumerating capability without inventing terminology],
+    [A decomposition; it is a toolkit, not a map],
+
+    [The Juran trilogy and the prevention-appraisal-failure cost model],
+    [Quality into planning, control and improvement; cost into four
+     categories],
+    [Locating where value is created],
+    [Operational structure; three or four categories is not a model],
+
+    [The eQMS module taxonomy],
+    [The market's own division into product modules],
+    [Understanding what a purchaser expects to exist],
+    [Authority; there is no governing body, only convergent vendor practice],
+  ),
+  caption: [The five candidate frameworks examined.],
+)
+
+Each decomposes something real. None decomposes the discipline. The finding
+is a property of the field rather than a limitation of the study, and
+attempting to force one candidate into the role of a governing model would
+misrepresent it.
+
+*Consequence for the product definition.* No framework offers a region to
+claim. Scope must therefore be expressed as the obligations the work
+discharges.
+
+== The management-system framework and the position of inspection within it
+
+ISO 9001:2015 employs the Harmonized Structure — the current designation for
+the arrangement previously published as Annex SL — comprising three
+introductory clauses followed by seven certifiable clauses: context,
+leadership, planning, support, operation, performance evaluation and
+improvement.
+
+Clauses 4 to 7, 9 and 10 are substantially identical across ISO
+management-system standards, which is what permits their integration into a
+single management system, and which also means they carry no
+quality-specific content. The subject matter of the discipline is
+concentrated in clause 8 and clause 9.1.
+
+#keep-with-next[
+  Within that concentration, the clauses bearing on inspection and
+  verification are:
 ]
 
-= TL;DR
-
-- *There is no SCOR for quality management.* SCOR is one governed process
-  model with named processes and standard metrics. Quality has several
-  partial, non-competing frames on different axes, and none decomposes the
-  discipline the way SCOR decomposes supply chain. Expecting a SCOR-shaped
-  answer and forcing a candidate into it is the failure mode.
-- *ISO 9001 is a requirements model, not a process model.* Clauses 4–7, 9
-  and 10 are generic management-system scaffolding shared with ISO 14001,
-  45001 and 27001. Almost all quality-specific content sits in *clause 8 and
-  9.1*.
-- *So positioning must be clause-anchored, not process-anchored.* There is
-  no pillar to claim and no process region to occupy. The move available
-  instead is to name the obligations the work discharges: _"ATTEST generates
-  the objective evidence clause 8.6 requires before release, and the record
-  clause 8.7 requires when release is refused."_
-- *The anchor is the 8.4 → 8.6 → 8.7 chain* — control of externally provided
-  processes, release of product, control of nonconforming output. It
-  survives in some form under IATF 16949, AS9100 and ISO 13485 alike.
-- *Quality has two axes, not one.* Alongside the
-  management-system axis sits a *measurement-validity axis* — VIM, GUM,
-  ISO 14253-1, ILAC-G8 — that governs whether a recorded number means
-  anything. Supply chain has no equivalent literature because it has no
-  measurement-uncertainty problem. ATTEST does.
-- *"Value inside the printed tolerance" is not a complete verdict.* It is
-  one specific decision rule — _simple acceptance_ — applied silently,
-  declaring a guard band of zero and accepting the false-accept risk that
-  implies at the boundary. Most QC software and every paper form gets this
-  wrong by not recording which rule was in force.
-- *Outsourcing pulls the process inside your own QMS.* Clause 8.4 makes an
-  outsourced process part of the outsourcing organisation's system even
-  though someone else performs it, and accountability for conformity never
-  transfers. The standards establish _that_ obligation and _what categories_
-  of control exist — *they do not establish how much verification is
-  enough.* That line is drawn by contract, customer requirement, and
-  documented risk judgement.
-- *Special processes are a hard limit.* Heat treatment, welding, plating,
-  coating and their kin are defined by the fact that their output _cannot_
-  be fully verified by inspecting the product afterwards. For those
-  characteristics, no amount of receiving inspection closes the gap — and
-  the frames' answer is process evidence, not more measurement.
-
-= Key Findings
-
-+ *No governing process model exists for quality.* Five candidate frames
-  were surveyed. Each decomposes something real; none decomposes the
-  discipline. This is a finding, not a gap in the research.
-+ *The quality-specific content of ISO 9001 is concentrated in one clause.*
-  Clause 8 (Operation) plus 9.1 (monitoring and measurement) carry it; the
-  rest is Harmonized Structure boilerplate. That concentration is what makes
-  clause-anchoring viable as a positioning strategy.
-+ *ISO 9001’s sixth edition is days away.* The FDIS ballot closed 9 July
-  2026 _(confirmed from the ISO/TC 176/SC 2 committee page directly —
-  primary)_. Publication is expected *16 September 2026* _(converging
-  secondary sources; weaker evidence than the ballot close)_. Clause numbers
-  in this document may be superseded within days of it being written.
-+ *The measurement-validity axis is where ATTEST's real differentiation
-  lives*, and it is the axis no supply-chain frame prepares you for.
-+ *A system that stores only "value" and "pass/fail" cannot defend a
-  borderline verdict* against any of the metrology standards, because it has
-  discarded exactly the fields the verdict depends on — uncertainty, the
-  decision rule, and the acceptance limit as distinct from the tolerance
-  limit.
-+ *The evidence ladder has about six rungs, not two.* A supplier
-  certificate, a third-party certification, a certificate of analysis, a
-  source inspection, your own measurement, and a process assessment are all
-  different weights of evidence. *No single mechanism is described anywhere
-  in the literature as sufficient alone.*
-+ *Medical devices hold the most mature answer to Pargar's situation*,
-  despite Pargar not being in medical. EU MDR and ISO 13485’s _legal
-  manufacturer_ concept states it cleanly: *obligations cannot be delegated;
-  activities can be subcontracted.*
-+ *CQI special-process assessments bind through customer-specific
-  requirements, not through IATF 16949 itself* _(secondary)_. Whether they
-  apply to Pargar depends on which automotive customer, not on certification
-  status.
-+ *Commercial quality platforms treat inspection as a sub-feature.*
-  Governance modules — CAPA, audit, document control, training — are
-  first-class; inspection execution is typically folded under "supplier
-  quality." Consistent with the product benchmark's independent finding that
-  no product binds a defect photograph to a specific characteristic on a
-  specific piece.
-
-= Details
-
-== Is there a SCOR for quality? No — and the shape of the "no" matters
-
-The comparison is worth making because a neighbouring discipline does have
-one. SCOR — the ASCM/APICS Supply Chain Operations Reference model — is a
-_process reference model_: it names processes, decomposes them into levels,
-and attaches standard metrics, so a system can claim a region of it and
-disclaim the rest. That is what makes a scope statement checkable rather
-than rhetorical.
-
-Quality management has produced nothing equivalent. What exists instead:
-
 #figure(
   table(
-    columns: (0.9fr, 1fr, 1.05fr, 1.05fr),
-    table.header([Frame], [What it decomposes], [Good for], [Cannot express]),
-    [*ISO 9001 / Harmonized Structure*],
-    [A management system into ten clauses, seven certifiable],
-    [Auditable, cross-industry requirements language auditors already speak],
-    [Quality _work_ as named process steps; most of its text is generic
-     scaffolding],
+    columns: (auto, 1.15fr, 1.6fr),
+    table.header([Clause], [Subject], [Significance]),
+    [8.4],
+    [Control of externally provided processes, products and services],
+    [Governs the relationship with subcontracted manufacturing],
 
-    [*AIAG APQP*],
-    [Product launch into five phases with defined outputs],
-    [The closest thing to SCOR in shape; what automotive customers audit
-     against],
-    [Anything after launch — it is scoped to new product introduction, not
-     ongoing production],
+    [7.1.5],
+    [Monitoring and measuring resources],
+    [Calibration and metrological traceability of the equipment used to
+     verify],
 
-    [*AIAG core tools* (PPAP, FMEA, MSA, SPC)],
-    [A toolkit],
-    [Enumerating capability without inventing vocabulary],
-    [A decomposition — it is a set of instruments, not a map],
+    [8.5.2],
+    [Identification and traceability],
+    [Identification of lots and parts through inspection],
 
-    [*Juran trilogy / PAF cost-of-quality*],
-    [Quality into planning/control/improvement, or cost into
-     prevention/appraisal/failure],
-    [Arguing _where value is created_ — which Pargar's business report
-     already does with its seven stages],
-    [Anything operational; three or four boxes is not a model],
+    [8.6],
+    [Release of products and services],
+    [Requires that verification be completed and evidenced before release,
+     with records identifying the releasing authority and demonstrating
+     traceability to the acceptance criteria],
 
-    [*eQMS module taxonomy*],
-    [The market's own decomposition into product modules],
-    [Knowing what a buyer expects to exist],
-    [Authority — there is no governing body, only convergent vendor
-     practice],
+    [8.7],
+    [Control of nonconforming outputs],
+    [Identification, containment, disposition and re-verification, with
+     records of the nonconformity, the action taken, any concession
+     obtained, and the authority deciding],
+
+    [9.1],
+    [Monitoring, measurement, analysis and evaluation],
+    [Converts individual records into aggregate performance data],
   ),
-  caption: [The candidate frames surveyed, and what each can and cannot do.],
+  caption: [The clauses of ISO 9001 bearing on inspection and verification.],
 )
 
-*The consequence for positioning.* ATTEST cannot make a SCOR-shaped claim,
-because no frame offers a pillar to claim. The move available instead is to
-anchor on the obligations the work discharges.
+Clause 8.6 constitutes the clearest available description, at clause level,
+of the central transaction of an inspection application: the record that
+release was authorised because verification was satisfied.
 
-== The management-system axis — where inspection actually lives
+*ISO 9001 does not assert a process model.* It asserts requirements that an
+organisation's self-defined processes must satisfy. An informal
+process-approach concept appears in clause 0.3 as guidance and is not
+normative.
 
-ISO 9001:2015 uses the *Harmonized Structure* (the current name for what was
-Annex SL, renamed in the ISO/IEC Directives around 2021 with no reported
-substantive change): clauses 1–3 introductory, then *4 Context · 5
-Leadership · 6 Planning · 7 Support · 8 Operation · 9 Performance
-evaluation · 10 Improvement*.
+== Product-quality frameworks and the evidence of the sector variants
 
-Clauses 4–7, 9 and 10 are near-identical across ISO management-system
-standards — which is exactly why they can be integrated into one system, and
-exactly why they carry no quality-specific content. Within clause 8, the
-relevant chain _(all clause numbers secondary-sourced — see banner)_:
+The five phases of Advanced Product Quality Planning constitute the closest
+structural analogue to a process reference model identified by this study: a
+lifecycle with defined outputs at each phase. Its limitation is one of
+scope, in that it governs product introduction rather than ongoing
+production. It nonetheless remains material, both because it is the
+framework in which automotive customer audits are conducted and because the
+Production Part Approval Process is its terminal output and is the artefact
+owed to those customers.
 
-#figure(
-  table(
-    columns: (1fr, 1.35fr, 1.45fr),
-    table.header([Clause], [What it governs], [Why it matters here]),
-    [*8.4* Control of externally provided processes, products and services],
-    [The successor to "purchasing"; covers outsourced _processes_, not just
-     bought parts],
-    [The clause governing Pargar's entire relationship with its workshops],
+The sector variants indicate what is core by demonstrating what varies.
+AS9100 adds configuration management and counterfeit-part controls; IATF
+16949 adds the automotive supplemental requirements; ISO 13485 adds
+device-lifecycle and regulatory obligations and, notably, *declines to adopt
+the Harmonized Structure* shared by the other management-system standards.
+That divergence is evidence against any proposition that a single framework
+serves all quality domains.
 
-    [*7.1.5* Monitoring and measuring resources],
-    [Calibration and traceability of the gauges used to verify],
-    [The gauge register and the recall query],
+== The measurement-validity framework <sec-measurement>
 
-    [*8.5.2* Identification and traceability],
-    [Lot and part traceability through inspection],
-    [],
-
-    [*8.6* Release of products and services],
-    [Verification must be completed and evidenced before release; records
-     must show who authorised it and traceability to the acceptance
-     criteria],
-    [*The single clearest clause-level description of what an inspection
-     application's core transaction is*],
-
-    [*8.7* Control of nonconforming outputs],
-    [Identify, contain, disposition, re-verify after correction; record the
-     nonconformity, the action, any concession, and the authority who
-     decided],
-    [The NCR model],
-
-    [*9.1* Monitoring, measurement, analysis and evaluation],
-    [Deciding what to measure and turning records into performance data],
-    [The reporting layer, distinct from the transactional 8.6/8.7 layer],
-  ),
-  caption: [The relevant clause chain within ISO 9001 clause 8.],
-)
-
-*ISO 9001 is a requirements model wrapped in a generic skeleton*, with an
-informal process-approach concept in clause 0.3 offered as guidance only. It
-does not assert a process model, so ATTEST cannot implement one. It asserts
-requirements that an organisation's self-defined processes must meet — which
-is a claim ATTEST _can_ make.
-
-== APQP, the core tools, and what the sector variants reveal
-
-*APQP's five phases* are the closest structural analogue to SCOR found: a
-lifecycle with defined outputs per phase. Its limit is scope — it governs
-product launch, not the ongoing production ATTEST sits in. It remains worth
-speaking because it is the language automotive customers audit in, and
-because *PPAP is its terminal output* and the artifact Pargar owes its
-customers.
-
-*The sector variants tell you what is core by showing what varies.* AS9100
-adds configuration management and counterfeit-part controls; IATF 16949 adds
-the automotive supplemental clauses; ISO 13485 adds device-lifecycle and
-regulatory obligations — and *deliberately opted out of the Harmonized
-Structure* the others share. That opt-out is decent evidence against any
-claim that one frame fits all quality domains.
-
-== The measurement-validity axis — the second body of literature
-
-ATTEST turns physical parts into numbers. A separate body of standards
-governs whether those numbers mean anything.
+A distinct body of literature governs whether a recorded number carries
+meaning. It has no counterpart in adjacent operational disciplines, which do
+not confront a measurement-uncertainty problem.
 
 #long-table[
   #figure(
     table(
-      columns: (1.3fr, 0.9fr, 1.5fr),
-      table.header(repeat: true, [Question], [Reach for], [What it gives]),
-      [What do these words mean — measurand, uncertainty, traceability,
-       accuracy vs precision?],
-      [*VIM (JCGM 200:2012)*],
-      [Canonical definitions, joint across BIPM/ISO/IEC/ILAC/OIML
-       _(primary — read from BIPM's browsable annotated VIM)_],
+      columns: (1.15fr, 1fr, 1.4fr),
+      table.header(repeat: true, [Question], [Governing document], [Provides]),
+      [Definition of terms — measurand, uncertainty, traceability, accuracy,
+       precision],
+      [International Vocabulary of Metrology, JCGM 200:2012],
+      [Canonical definitions, issued jointly by the principal metrological
+       bodies _(primary source)_],
 
-      [How do I express uncertainty on a measurement?],
-      [*GUM (JCGM 100:2008)*],
-      [Type A/B evaluation, combined and expanded uncertainty, coverage
-       factor k],
+      [Expression of uncertainty on a measurement],
+      [Guide to the Expression of Uncertainty in Measurement, JCGM
+       100:2008],
+      [Type A and Type B evaluation, combined and expanded uncertainty,
+       coverage factor],
 
-      [*A part measures inside tolerance by less than my uncertainty — does
-       it pass?*],
-      [*ISO 14253-1* (dimensional) · *ILAC-G8* (general)],
-      [The guard-band mechanism, conformance and non-conformance zones, the
-       default burden-of-proof rule],
+      [Whether a part measuring inside tolerance by less than the
+       measurement uncertainty conforms],
+      [ISO 14253-1 for dimensional metrology; ILAC-G8 generally],
+      [The guard-band mechanism, conformance and non-conformance zones, and
+       the default allocation of the burden of proof],
 
-      [Same question, non-dimensional],
-      [*JCGM 106 / ISO-IEC Guide 98-4*],
-      [Acceptance and rejection regions, named decision-rule shapes],
+      [The same question in non-dimensional contexts],
+      [JCGM 106:2012],
+      [Acceptance and rejection regions, and named decision-rule forms],
 
-      [Customer and supplier disagree on whose uncertainty rule applies],
-      [*ISO 14253-3*],
-      [A procedure for negotiating and documenting an agreed statement],
+      [Resolution where customer and supplier apply different uncertainty
+       rules],
+      [ISO 14253-3],
+      [A procedure for agreeing and documenting a shared statement],
 
-      [What must a report state if we claim conformity?],
-      [*ISO/IEC 17025*],
-      [Result + uncertainty + *the decision rule used*],
+      [The content required of a report asserting conformity],
+      [ISO/IEC 17025],
+      [Requirement to record the result, its uncertainty, and the decision
+       rule applied],
 
-      [How do we keep gauges trustworthy over time?],
-      [*ISO 10012*],
-      [Metrological confirmation as a managed system. The *2026 edition
-       replaces the 2003* and now explicitly folds in decision-rule
-       guidance],
+      [Maintenance of measuring equipment over time],
+      [ISO 10012],
+      [Metrological confirmation as a managed system. The 2026 edition
+       supersedes the 2003 edition and incorporates decision-rule guidance],
 
-      [Is our "traceable to NIST" claim substantiated?],
-      [*VIM 2.41–2.42 + NIST's own policy*],
-      [The unbroken-chain definition, and NIST's explicit statement that *it
-       does not certify third parties' traceability claims* _(primary)_],
+      [Substantiation of a traceability claim],
+      [JCGM 200:2012 clauses 2.41–2.42, with NIST's published policy],
+      [The unbroken-chain definition, and NIST's explicit statement that it
+       does not certify traceability claims made by third parties _(primary
+       source)_],
 
-      [Is the gauge good enough, independent of any one measurement?],
-      [*MSA* — bias, linearity, stability, gauge R&R, NDC],
-      [Gauge-level capability, without which a small stated uncertainty is
+      [Whether an instrument is adequate independently of any single
+       measurement],
+      [Measurement systems analysis — bias, linearity, stability,
+       repeatability and reproducibility],
+      [Instrument-level capability, without which a stated uncertainty is
        not credible],
 
-      [Must we measure every part?],
-      [*ISO 2859-1* (attributes) · *ISO 3951* (variables)],
-      [AQL and operating-characteristic framing for batch-level risk],
+      [Whether every unit must be measured],
+      [ISO 2859-1 for attributes; ISO 3951 for variables],
+      [Acceptance quality limits and operating-characteristic curves as
+       expressions of batch-level risk],
     ),
     caption: [The measurement-validity literature, by the question each
-      standard answers.],
+      document governs.],
   )
 ]
 
-== The decision-rule problem — the most consequential concept in this document
+== Decision rules in conformity assessment <sec-decision>
 
-The literature is unanimous that *"measured value inside the printed
-tolerance" is not a complete decision rule.* It is one specific rule —
-_simple acceptance_ — that looks like merely reading the drawing, while
-silently declaring a guard band of zero.
+The literature is consistent on a point that most inspection practice does
+not observe: *a measured value lying within the printed tolerance does not
+by itself constitute a conformity decision.* It is the application of one
+specific decision rule, termed simple acceptance, which declares a guard
+band of zero and accepts the associated risk of false acceptance at the
+specification boundary.
 
-+ Every characteristic has a printed *tolerance*. It makes no reference to
+The reasoning proceeds as follows.
+
++ A characteristic carries a *tolerance*, which makes no reference to
   measurement.
-+ Every measurement carries *uncertainty*. It does not disappear because the
-  software has no field for it; it is a property of the gauge, method,
-  environment and operator.
-+ So a value near a limit is genuinely ambiguous about the part's _true_
-  value. ISO 14253-1 and JCGM 106 formalise this with a *conformance zone*
-  narrower than the tolerance and a *non-conformance zone* wider than it —
-  with a named strip between them where the measurement alone cannot force a
-  verdict.
-+ *Whoever asserts a verdict bears the cost of their own uncertainty.* Under
-  ISO 14253-1’s default, absent a documented agreement: to declare _pass_,
-  the value must clear the limit by more than the uncertainty; to declare
-  _fail_, it must miss by more than the uncertainty.
-+ *Software gets this wrong specifically* by treating value-versus-limit as
-  the whole decision, with no uncertainty field, no stated guard band, and
-  no record of which rule applied. Per ILAC-G8 that is not a null choice —
-  it _is_ a decision rule, just an undisclosed one. ISO/IEC 17025 requires
-  the rule to be stated whenever a conformity statement is issued, precisely
-  because accreditors decided the silent default was no longer acceptable.
-+ *The fix is not "always guard-band."* Simple acceptance is legitimate and
-  named, and is broadly low-risk at a high test uncertainty ratio. The fix
-  is to make the rule *explicit, recorded, and attributable per
-  characteristic*, so a borderline verdict can be defended by pointing at
-  the recorded uncertainty, the rule applied, and who that rule places the
-  burden on. That triple is what _defensible_ means in this literature.
++ Every measurement of that characteristic carries an *uncertainty*, which
+  is a property of the measuring process — the instrument, the method, the
+  environment and the operator — and which exists whether or not it is
+  recorded.
++ A value lying near a limit is consequently ambiguous as to the true value
+  of the part. ISO 14253-1 and JCGM 106 both formalise this by defining a
+  *conformance zone* narrower than the tolerance and a *non-conformance
+  zone* wider than it, with an intermediate region in which the measurement
+  alone does not determine a verdict.
++ Under the default rule of ISO 14253-1, absent a documented agreement to
+  the contrary, *the party asserting a verdict bears its own uncertainty*: a
+  declaration of conformity requires the value to fall within the limit by
+  more than the uncertainty, and a declaration of nonconformity requires it
+  to fall outside by more than the uncertainty.
++ A system recording only the value against the limit has not declined to
+  choose a decision rule. It has applied one and omitted to record it.
+  ISO/IEC 17025 requires the decision rule to be stated whenever a
+  conformity statement is issued, a requirement introduced precisely because
+  the undisclosed default was judged inadequate for accredited work.
 
-== What a measurement record must carry
+The corrective indicated by the literature is not the universal adoption of
+a guard band. Simple acceptance is a legitimate and named rule, and is
+regarded as low-risk where the test uncertainty ratio is high. The
+corrective is that the rule be *explicit, recorded, and attributable to the
+individual characteristic*, such that a boundary verdict can be defended by
+reference to the recorded uncertainty, the rule applied, and the party on
+whom that rule places the burden.
 
-Derived from VIM, GUM, ISO 14253-1, ILAC-G8 and ISO/IEC 17025 read
-together — not from software convention:
+== The content required of a defensible measurement record
 
-+ *The measurand*, precisely identified — which characteristic, on which
-  part, in what state
-+ *The measured quantity value*
-+ *The measurement uncertainty* — expanded uncertainty with its coverage
-  factor, not folded silently into a flag
-+ *Traceability provenance* — what the gauge's calibration chain traces to
-+ *The tolerance limits* — the drawing values, as their own field
-+ *The acceptance limits actually applied*, if different — the guard band,
-  explicit, never implied
-+ *The decision rule in force*, named, and who it was agreed with
-+ *The verdict as a conclusion derived from 2–7*, reconstructable from the
-  other fields rather than stored as an unexplained flag
-+ *Metrological confirmation status of the gauge* at time of use, ideally
-  with gauge R&R data
+Read together, the documents in #secref(<sec-measurement>) indicate that a
+measurement record supporting an accept or reject decision requires:
 
-#quote(block: true)[
-  A system storing only _value_ and _pass/fail_ — the shape of the paper
-  form ATTEST replaces, and of most off-the-shelf QC software — cannot
-  reconstruct or defend a borderline verdict, because it discarded the
-  fields the verdict depends on.
-]
++ the *measurand*, identified precisely — the characteristic, the part, and
+  the condition of the object;
++ the *measured value*;
++ the *measurement uncertainty*, expressed as an expanded uncertainty with
+  its coverage factor, and not consolidated into a pass/fail indication;
++ the *traceability provenance* of the value — the reference to which the
+  instrument's calibration chain leads;
++ the *tolerance limits*, retained as a distinct field;
++ the *acceptance limits actually applied*, where these differ, recorded
+  explicitly rather than implied;
++ the *decision rule in force*, named, together with the basis on which it
+  was agreed;
++ the *verdict*, as a conclusion derived from items 2 to 7 and
+  reconstructible from them, rather than stored as an independent flag;
++ the *metrological confirmation status* of the instrument at the time of
+  use.
 
-== Outsourced production — whose QMS governs
+A record retaining only a value and a pass/fail indication — the form of
+both the paper inspection sheet and the majority of commercial inspection
+software — cannot reconstruct or defend a boundary verdict, because it has
+not retained the fields on which the verdict depends.
 
-*Clause 8.4 pulls the outsourced process inside the outsourcing
-organisation's own QMS*, even though another party performs it.
-Accountability for conformity never transfers. The clearest formulation of
-the principle found anywhere is from EU MDR and ISO 13485’s _legal
-manufacturer_ concept: *obligations cannot be delegated; activities can be
-subcontracted.*
+== Governance of production performed by an external party <sec-outsourcing>
 
-But the standards stop earlier than expected. They establish *that* the
-obligation exists and *what categories* of control are available. They do
-not establish *how much* verification is enough. That is set by contract,
-customer requirement, and the organisation's own documented risk
-judgement — and the requirement is to have determined one and be able to
-justify it.
+Clause 8.4 has the effect of bringing an outsourced process within the
+outsourcing organisation's own management system notwithstanding that
+another party performs it. Accountability for conformity is not transferred.
 
-#keep-with-next[The mechanisms available, and what each cannot do:]
+The most precise articulation of the principle identified by this study
+originates outside the general quality framework, in the medical-device
+regime, where the concept of the legal manufacturer holds that *obligations
+may not be delegated although activities may be subcontracted.* The
+formulation is materially clearer than any found within ISO 9001 itself; the
+retained-responsibility principle traces cleanly to the 2008 edition, but no
+single clause of the 2015 edition states it as directly.
+
+The standards establish the obligation and enumerate the categories of
+control available. *They do not establish the sufficient extent of
+verification.* That determination rests with contract, customer requirement,
+and the organisation's own documented risk assessment, and the requirement
+is that a determination be made and be capable of justification.
+
+#keep-with-next[The mechanisms available, with their limits:]
 
 #long-table[
   #figure(
     table(
-      columns: (1fr, 1.4fr, 1.4fr),
-      table.header(repeat: true, [Mechanism], [Verifies], [Cannot verify]),
+      columns: (1fr, 1.35fr, 1.35fr),
+      table.header(repeat: true, [Mechanism], [Verifies], [Does not verify]),
       [Supplier qualification],
-      [Capability, QMS maturity, capacity, risk profile before first order],
-      [Ongoing conformance; anything about a part not yet run],
+      [Capability, system maturity, capacity and risk prior to first order],
+      [Ongoing conformance; any part not yet produced],
 
       [Contractual flow-down],
       [That requirements were formally communicated],
-      [That they were understood or will be met — necessary, not
-       sufficient],
+      [That they were understood or will be met],
 
       [Second-party audit],
-      [That documented controls exist and are followed, at the audit
-       moment],
+      [That documented controls exist and are followed, at the time of
+       audit],
       [Conformance between audits; anything not sampled],
 
       [Third-party certification],
-      [An accredited body found the system conformant at a point in time],
-      [Lot-level conformance — *explicitly not sufficient alone* to remove
-       receiving inspection],
+      [That an accredited body found the system conformant at a point in
+       time],
+      [Conformance of any individual lot; secondary sources are explicit
+       that certification alone does not displace receiving inspection],
 
-      [Source / surveillance inspection],
-      [Process parameters and product state at production, including things
-       unavailable later],
-      [Anything after the inspector leaves],
+      [Source or surveillance inspection],
+      [Process parameters and product condition at the point of production],
+      [Anything occurring after the inspector's departure],
 
-      [*Receiving inspection*],
-      [Conformance of the delivered lot on inspectable characteristics],
-      [*Special-process characteristics* (@special-processes); anything
-       outside the sampling plan],
+      [Receiving inspection],
+      [Conformance of the delivered lot in respect of inspectable
+       characteristics],
+      [Special-process characteristics; anything outside the sampling plan],
 
-      [Skip-lot / dock-to-stock],
-      [Nothing new — a risk-based _reduction_, earned by track record],
-      [Same gaps, sampled less; drift caught later],
+      [Skip-lot and reduced inspection],
+      [Nothing additional; a risk-based reduction justified by record],
+      [The same matters as receiving inspection, sampled less frequently],
 
       [Certificate of conformance],
-      [That the supplier formally attests conformance],
-      [Actual values — a claim, _"an input, not a substitute"_],
+      [That the supplier has formally attested conformance],
+      [Measured values; it is a declaration rather than independent
+       evidence],
 
       [Certificate of analysis],
-      [Actual results reported by the supplier],
-      [Independence — still supplier-originated unless from an accredited
-       lab],
+      [Values reported by the supplier for a specific lot],
+      [Independence of the measurement],
 
-      [*CQI special-process assessment*],
-      [Whether the _process_ is under control — the only substitute for
-       impossible product-level verification],
-      [Any individual part; periodic, so drift between assessments is
-       missed],
+      [Special-process assessment under the AIAG CQI series],
+      [Whether the process itself is under control],
+      [Conformance of any individual part; assessments are periodic],
 
-      [PPAP],
-      [That the process met the full design record at a production-rate
-       trial],
-      [Ongoing conformance after approval; unreported changes],
+      [Production Part Approval Process],
+      [That the process met the design record at a production-rate trial],
+      [Ongoing conformance following approval],
 
       [Supplier scorecard],
-      [Trend of delivered performance],
+      [Trend in delivered performance],
       [Root cause; leading indicators],
     ),
-    caption: [The control mechanisms available under clause 8.4, and the
-      limits of each.],
+    caption: [The control mechanisms available for outsourced production,
+      with their limits.],
   )
 ]
 
-== Special processes — the hard limit on what inspection can promise <special-processes>
+The CQI special-process assessments are invoked through customer-specific
+requirements rather than by IATF 16949 itself. Their applicability
+accordingly depends on the customer rather than on certification status.
+
+== Special processes and the limit of product verification <sec-special>
 
 A *special process* is one whose output cannot be fully verified by
 subsequent inspection or testing of the product alone. The definition
-converges near-verbatim across three independent lineages — EN 9100
-aerospace, NADCAP, and automotive CQI framing. Commonly: *heat treatment,
+converges near-verbatim across three independent lineages — the aerospace
+standard EN 9100, the NADCAP accreditation regime, and the automotive CQI
+framing. Processes conventionally so classified include heat treatment,
 welding, plating, coating, soldering, brazing, casting, moulding, adhesive
-bonding, additive manufacturing*, and non-destructive testing itself.
+bonding and additive manufacturing.
 
-A weld can pass visual, dimensional and radiographic inspection and still
-carry hydrogen-induced cracking. A furnace excursion can leave hardness out
-of spec in a way no surface measurement reveals.
+The characteristic failure is latent. A welded joint may satisfy visual,
+dimensional and radiographic examination while carrying hydrogen-induced
+cracking; a furnace excursion may leave hardness outside specification in a
+manner no surface measurement discloses.
 
-*The frames' answer is not "inspect harder."* It is that quality must be
-built into the process — parameter control with continuous recording and
-alarms, qualified procedures and operators, traceability — all of which can
-only be verified by observing or auditing the process, never the shipped
-part.
+The frameworks do not respond to this with more inspection. They respond
+with process control — parameter recording with alarm, qualified procedures
+and qualified personnel, and traceability — none of which can be verified by
+examining the delivered part.
 
-*Stated plainly for ATTEST:* for any characteristic produced by a special
-process at a shop Pargar does not operate, *no amount of receiving
-inspection closes the verification gap.* The honest position is that
-process-control evidence — furnace charts, weld procedure qualifications,
-CQI scores, plating certificates carrying parameters — is a *distinct
-evidence class* from product measurement, and a special-process
-characteristic must not be represented as _verified_ on the strength of
-dimensional or visual inspection alone.
+*The consequence is a limit on what any inspection system can assert.* For a
+characteristic produced by a special process at a facility the organisation
+does not operate, receiving inspection cannot close the verification gap at
+any level of rigour. Process-control evidence — furnace records, welding
+procedure qualifications, assessment scores, plating certificates carrying
+process parameters — constitutes a distinct class of evidence from product
+measurement, and a special-process characteristic should not be represented
+as verified on the basis of dimensional or visual inspection alone.
 
-== The evidence ladder <evidence-ladder>
+== The hierarchy of verification evidence <sec-ladder>
 
-Weakest to strongest. *This ranking is a synthesis across the research, not
-a table published by any standard.*
+The mechanisms in #secref(<sec-outsourcing>) do not carry equal weight. The
+following ordering, from weakest to strongest, is a synthesis drawn across
+the three lines of enquiry and *is not a hierarchy published by any
+standard.*
 
-+ *Supplier certificate of conformance alone* — a claim
-+ *Third-party QMS certification alone* — the system was sound at audit
-  time
-+ *Certificate of analysis with data* — better, still supplier-originated
-+ *Second-party audit / source inspection* — direct, but point-in-time
-+ *Your own receiving measurement* — the baseline expectation, and
-  structurally blind to special-process defects
-+ *CQI-style process assessment* — the only mechanism targeting the process
-  rather than the product
++ A supplier's certificate of conformance alone, which is a declaration.
++ Third-party certification of the supplier's management system alone, which
+  evidences the system at the time of audit.
++ A certificate of analysis reporting values, which remains
+  supplier-originated.
++ Second-party audit or source inspection, which is direct but confined to a
+  point in time.
++ The organisation's own receiving measurement, which is the baseline
+  expectation and is structurally incapable of detecting special-process
+  defects.
++ Special-process assessment, which is the only mechanism addressing the
+  process rather than the product.
 
-*No single rung is sufficient alone.* The literature's consistent theme is
-that these are combined and risk-weighted, with the weighting left to the
-organisation.
+*No single mechanism is described anywhere in the literature as sufficient
+in isolation.* The consistent position is that these are combined and
+weighted according to risk, with the weighting left to the organisation.
 
-== Vocabulary
+= Terminology
 
-Terms of art a positioning document and a data model will both use.
-Definitions from VIM are primary-sourced; the quality terms are secondary.
+Definitions drawn from the International Vocabulary of Metrology are
+primary-sourced; the quality-management terms are secondary.
 
-- *Objective evidence* — data supporting the existence or verity of
-  something. The phrase ISO 9001 uses for what an inspection record must
-  constitute.
-- *Conformity / nonconformity* — fulfilment, or non-fulfilment, of a
-  requirement.
-- *Verification vs validation* — verification confirms specified
-  requirements have been fulfilled; validation confirms requirements for a
-  specific intended use have been fulfilled. ATTEST does the first.
-- *Disposition* — the decision taken on nonconforming output: correction,
-  rework, repair, scrap, return, concession.
-- *Concession* — permission to use or release product that does not conform
-  to specified requirements.
-- *Special characteristic* — a characteristic whose variation materially
-  affects safety, compliance, fit, function or subsequent processing.
-- *Measurand* _(VIM 2.3)_ — the quantity intended to be measured.
-  Specifying one requires stating the state of the object, not just naming
-  a dimension.
-- *Measurement result* _(VIM 2.9)_ — a value _together with_ its
-  uncertainty. A number alone is not a measurement result.
-- *Measurement uncertainty* — non-negative parameter characterising the
-  dispersion of values attributable to the measurand.
-- *Metrological traceability* _(VIM 2.41–2.42)_ — the property of a result
-  whereby it relates to a reference through a documented unbroken chain of
-  calibrations, each contributing to uncertainty.
-- *Tolerance limit vs acceptance limit* — the drawing value versus the
-  value actually used to gate the verdict. *Different fields.* The gap
-  between them is the guard band.
-- *Decision rule* — the documented rule describing how uncertainty is
-  accounted for when stating conformity.
-- *Simple acceptance / shared risk* — the decision rule where the
-  acceptance limit equals the tolerance limit. The silent default.
+#long-table[
+  #figure(
+    table(
+      columns: (1fr, 2.6fr),
+      table.header(repeat: true, [Term], [Definition]),
+      [Objective evidence],
+      [Data supporting the existence or verity of something; the term ISO
+       9001 employs for what an inspection record must constitute],
 
-= Recommendations
+      [Conformity / nonconformity],
+      [Fulfilment, or non-fulfilment, of a requirement],
 
-Evidence points these ways. *Research does not decide* — these are inputs to
-positioning, not choices already made.
+      [Verification / validation],
+      [Verification confirms that specified requirements have been
+       fulfilled; validation confirms that requirements for a specific
+       intended use have been fulfilled],
 
-+ *Anchor positioning on the 8.4 → 8.6 → 8.7 chain.* It is universal across
-  sector variants, currently in force, and speaks the language an IATF
-  auditor already uses. The structural chain is unlikely to be renumbered by
-  the sixth edition, though that is a judgement.
-+ *Claim clauses, not pillars.* _"ATTEST generates the objective evidence
-  clause 8.6 requires before release, and the record clause 8.7 requires
-  when release is refused."_
-+ *Treat the decision rule as a first-class field*, per characteristic,
-  from the first schema. Retrofitting it makes every historical verdict
-  ambiguous, and it is the difference between a verdict that can be
-  defended and one that can only be asserted.
-+ *Model process-control evidence as its own class*, distinct from both
-  product measurement and supplier claims — because @special-processes says
-  some characteristics can be verified no other way.
-+ *The binary `observed | claimed` split in the architecture hints is too
-  coarse.* The ladder in @evidence-ladder has six rungs. Whether the schema
-  needs all six or a coarser grouping is a design decision this research
-  does not make.
-+ *Wait for the sixth edition before freezing clause numbers.* Expected
-  16 September 2026.
+      [Disposition],
+      [The decision taken on nonconforming output: correction, rework,
+       repair, scrap, return, or concession],
 
-= Caveats
+      [Concession],
+      [Permission to use or release product that does not conform to
+       specified requirements],
 
-- *No ISO or IATF clause was read from primary text.* See the banner. Every
-  clause number here needs verification against a licensed copy before it is
-  quoted to an auditor.
-- *ISO 9001’s sixth edition is expected 16 September 2026* — days after
-  this was written. The FDIS ballot close (9 July 2026) is primary-sourced;
-  the publication date is not.
-- *PDF rendering was unavailable in the research environment*, which
-  blocked verbatim access to several freely-published primary documents —
-  including ILAC-G8’s guard-band-versus-risk table, which was specifically
-  sought. This is a tooling limitation, not a paywall, and the table is
-  obtainable.
-- *The evidence ladder in @evidence-ladder is a synthesis*, not a published
-  standard.
-- *Every IATF clause and the CQI assessor requirements are
-  secondary-sourced.* Specific skip-lot thresholds and the CQI assessor
-  experience rule are illustrative, not normative.
-- *MSA and sampling were covered conceptually only* — both paywalled, and
-  the sampling tables are already held in `50-research/` with their own
-  disputed cells.
-- The retained-responsibility principle traces cleanly to ISO 9001:2008
-  clause 4.1; *no single 2015-numbered sentence states it as crisply*,
-  which is worth knowing before citing it.
+      [Special characteristic],
+      [A characteristic whose variation materially affects safety,
+       compliance, fit, function or subsequent processing],
+
+      [Measurand],
+      [The quantity intended to be measured. Specification requires stating
+       the condition of the object, not only naming a dimension _(VIM 2.3)_],
+
+      [Measurement result],
+      [A value together with its uncertainty. A value alone does not
+       constitute a measurement result _(VIM 2.9)_],
+
+      [Measurement uncertainty],
+      [A non-negative parameter characterising the dispersion of values
+       attributable to the measurand],
+
+      [Metrological traceability],
+      [The property whereby a result relates to a reference through a
+       documented unbroken chain of calibrations, each contributing to
+       uncertainty _(VIM 2.41–2.42)_],
+
+      [Tolerance limit / acceptance limit],
+      [The specification value, and the value actually applied in reaching
+       the verdict. These are distinct quantities; the interval between them
+       is the guard band],
+
+      [Decision rule],
+      [The documented rule describing how measurement uncertainty is
+       accounted for in stating conformity],
+
+      [Simple acceptance],
+      [The decision rule in which the acceptance limit equals the tolerance
+       limit],
+    ),
+    caption: [Terms of art used by the product definition and the data
+      model.],
+  )
+]
+
+= Implications for the Product Definition
+
+The following are consequences the evidence supports. Under this project's
+research conventions a study reports evidence and does not record decisions;
+each item below requires a decision taken elsewhere.
+
++ *Scope may be expressed through clause obligations rather than through a
+  claimed process region.* The sequence of clauses 8.4, 8.6 and 8.7 is
+  present in some form in every sector variant examined, is currently in
+  force, and is expressed in the language in which audits are conducted.
++ *The decision rule is indicated as a first-class attribute of a
+  characteristic*, recorded at the point the verdict is formed. Introducing
+  it subsequently renders every historical verdict ambiguous as to the basis
+  on which it was reached.
++ *Process-control evidence is indicated as a class distinct from both
+  product measurement and supplier declaration*, on the grounds established
+  in #secref(<sec-special>).
++ *The evidence hierarchy in #secref(<sec-ladder>) has six levels*, which is
+  finer than a binary distinction between measurement and declaration.
+  Whether the product requires all six or a coarser grouping is a design
+  question this study does not determine.
++ *Clause references should be confirmed against the sixth edition of ISO
+  9001* before being fixed in a product definition or a procedure. See
+  #secref(<sec-coverage>).
+
+= Coverage and Confidence <sec-coverage>
+
+== Surveyed
+
+The management-system frameworks and their sector variants; the automotive
+product-quality frameworks and core tools; the commercial quality-software
+module taxonomy; the metrological literature governing vocabulary,
+uncertainty, decision rules, measurement management and traceability; the
+governance of outsourced processes including the special-process assessment
+regime; and the medical-device treatment of the accountable manufacturer.
+
+== Not reachable
+
+*The texts of ISO and IATF standards.* Both are published under licence and
+were unavailable. No clause number in this report was read from the standard
+to which it refers. Every IATF clause reference in particular derives from
+registrars and training providers rather than from the standard.
+
+*Several freely published metrological documents in portable-document
+format*, including the guard-band and risk tabulation of ILAC-G8, which was
+specifically sought. The obstacle was one of document rendering rather than
+of access rights, and the material is obtainable.
+
+*Measurement systems analysis and the acceptance sampling standards* were
+treated at the conceptual level only. Both are published under licence, and
+the sampling tables are held, with their own recorded uncertainties, in a
+separate study.
+
+== Out of scope
+
+Product benchmarking; the internal requirements of ATTEST; and any
+determination as to what the product will do.
+
+== Confidence
+
+*High.* The absence of a unified process reference model; the concentration
+of quality-specific content in clause 8; the structure and content of the
+metrological literature; the decision-rule analysis at
+#secref(<sec-decision>); and the special-process limit at
+#secref(<sec-special>). Each rests either on primary sources or on
+convergence across independent lineages.
+
+*Moderate.* The clause numbering throughout, which is convergent across
+secondary sources but unconfirmed against the standards; the account of IATF
+supplemental requirements, which is secondary throughout; and the status of
+the 2026 edition of ISO 10012.
+
+*Reported as a synthesis rather than as a finding.* The evidence hierarchy
+at #secref(<sec-ladder>), which is a construction of this study and is
+published by no standard.
+
+*Time-limited.* The sixth edition of ISO 9001 is expected on
+16 September 2026. The closure of the final-draft ballot on 9 July 2026 is
+confirmed from
+the responsible ISO committee's own record _(primary source)_; the
+publication date rests on converging secondary sources and is the weaker of
+the two claims. Clause numbering in this report may be superseded shortly
+after its issue. A second edition of IATF 16949 is separately reported to be
+in preparation.
+
+= References
+
+== Primary sources
+
+- Bureau International des Poids et Mesures, JCGM publications catalogue.
+  #ref-url("https://www.bipm.org/en/committees/jc/jcgm/publications")
+- International Vocabulary of Metrology (JCGM 200:2012), annotated edition.
+  #ref-url("https://jcgm.bipm.org/vim/en/")
+- National Institute of Standards and Technology, policy on metrological
+  traceability. #ref-url("https://www.nist.gov/calibrations/traceability")
+- ISO/TC 176/SC 2, ISO 9001 revision status.
+  #ref-url("https://committee.iso.org/sites/tc176sc2/home/news/content-left-area/news-and-updates/iso-9001-revision-update-4.html")
+- AIAG, quality core tools and manuals catalogue.
+  #ref-url("https://www.aiag.org/training-and-resources/manuals")
+- ISO catalogue entries, consulted for title, scope and edition status only.
+  #ref-url("https://www.iso.org/standard/70137.html") (ISO 14253-1:2017);
+  #ref-url("https://www.iso.org/standard/85864.html") (ISO 10012:2026)
+- International Laboratory Accreditation Cooperation, ILAC-G8 revision
+  notice. #ref-url("https://ilac.org/latest_ilac_news/revised-ilac-g8-published/")
+- ISO, quality management principles.
+  #ref-url("https://www.iso.org/quality-management/principles")
+
+== Secondary sources — management-system frameworks
+
+- #ref-url("https://the9000store.com/articles/iso-9001-2015-annex-sl/")
+- #ref-url("https://blog.ansi.org/ansi/annex-sl/")
+- #ref-url("https://blog.auditortrainingonline.com/blog/what-is-clause-8-operation-in-iso-90012015")
+- #ref-url("https://davidbarker.consulting/iso9001/clause-8-6-release-of-products-and-services/")
+- #ref-url("https://davidbarker.consulting/iso9001/clause-8-7-control-of-nonconforming-outputs/")
+- #ref-url("https://preteshbiswas.com/2023/09/01/iso-90012015-clause-9-1-monitoring-measurement-analysis-and-evaluation/")
+- #ref-url("https://www.9001simplified.com/learn/next-iso-9001-revision.php")
+- #ref-url("https://www.smithers.com/resources/2026/january/iso-9001-news-preparing-for-the-2026-revision")
+- #ref-url("https://www.dqsglobal.com/en/explore/focus-area/iso-9001-revision-at-a-glance")
+- #ref-url("https://asq.org/quality-resources/iso-9000")
+- #ref-url("https://asq.org/quality-resources/cost-of-quality")
+- #ref-url("https://sgsystemsglobal.com/glossary/juran-trilogy/")
+
+== Secondary sources — automotive frameworks and outsourcing
+
+- #ref-url("https://quality-one.com/iatf-16949/")
+- #ref-url("https://quality-one.com/ppap/")
+- #ref-url("https://www.dqsglobal.com/en/explore/dqs-knowledge-center/iatf-16949-explained")
+- #ref-url("https://preteshbiswas.com/2023/09/05/iso-90012015-clause-8-4-control-of-externally-provided-processes-products-and-services/")
+- #ref-url("https://davidbarker.consulting/iso9001/8-4-control-of-externally-provided-processes-products-and-services/")
+- #ref-url("https://the9000store.com/iso-9001-2015-requirements/iso-9001-2015-operational-requirements/external-providers/")
+- #ref-url("https://unichrone.com/blog/quality-management/5-phases-of-advanced-product-quality-planning/")
+- #ref-url("https://www.compro.gmbh/en/harmonisation-vda-aiag/")
+
+== Secondary sources — metrology and conformity assessment
+
+- #ref-url("https://hn-metrology.com/papers/decrules.htm")
+- #ref-url("https://www.isobudgets.com/conformance-probability/")
+- #ref-url("https://calibrationos.com/learn/guard-banding-decision-rules-ilac-g8")
+- #ref-url("https://blog.ansi.org/ansi/iso-10012-2026-measurement-management-systems/")
+- #ref-url("https://blog.beamex.com/iso-10012-is-being-updated")
+
+== Secondary sources — sector variants and software taxonomy
+
+- #ref-url("https://meddeviceguide.com/blog/iso-13485-vs-iso-9001-comparison")
+- #ref-url("https://mdregulatory.com/iso-13485/")
+- #ref-url("https://qmslearning.com/blog/as9100-requirements")
+- #ref-url("https://quality.eleapsoftware.com/what-is-eqms-software-complete-guide-for-2025/")
+- #ref-url("https://simplerqms.com/quality-management-system/")
