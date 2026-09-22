@@ -5,20 +5,20 @@
 
 #let meta = (
   // --- Titles -------------------------------------------------------------
-  title: "Main Report Title",            // large title on the cover
-  subtitle: "Report Subtitle",           // gray line under the title
-  summary_title: "Document Summary Title", // shown in the metadata table + header
+  title: "راهنمای جامع معماری و مدل خدمات کسب‌وکار پرگار",   // large title on the cover
+  subtitle: "پلتفرم هوشمند ساخت بر اساس تقاضا (Pargar-ODM)",  // gray line under the title
+  summary_title: "راهنمای معماری و مدل خدمات پرگار",          // metadata table + running header
 
   // --- Stakeholders -------------------------------------------------------
-  employer: "Recipient Name / Department / Company", // prepared for
-  producer: "Author Name / Department / Company",     // prepared by
+  employer: "تیم‌های بازاریابی، تولید محتوا، ارتباطات، توسعه بازار و مدیران غیرفنی",
+  producer: "شرکت کارون",
 
   // --- Classification -----------------------------------------------------
-  access_level: 3,     // 1 = Internal | 2 = External     | 3 = Public
+  access_level: 1,     // 1 = Internal | 2 = External     | 3 = Public
   confidentiality: 1,  // 1 = Normal   | 2 = Confidential | 3 = Top Secret
 
   // --- Identification -----------------------------------------------------
-  doc_id: "FILE-NAME-V01-20260101",
-  date: "2026/01/01",  // header/cover date (use YYYY/MM/DD, or Persian digits for fa)
+  doc_id: "PARGAR-ODM-GUIDE-V1",
+  date: "۱۴۰۵/۰۶/۳۱",  // header/cover date
   year: 2026,          // copyright year on the cover footer
 )
