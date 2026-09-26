@@ -18,7 +18,7 @@
   confidentiality: 1,  // 1 = Normal   | 2 = Confidential | 3 = Top Secret
 
   // --- Identification -----------------------------------------------------
-  doc_id: "PARGAR-ODM-GUIDE-V1",
-  date: "۱۴۰۵/۰۶/۳۱",  // header/cover date
+  doc_id: "PARGAR-ODM-GUIDE-V3",
+  date: "۱۴۰۵/۰۷/۰۴",  // header/cover date
   year: 2026,          // copyright year on the cover footer
 )
