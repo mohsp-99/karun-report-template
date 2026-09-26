@@ -5,8 +5,8 @@
 
 #let meta = (
   // --- Titles -------------------------------------------------------------
-  title: "دستورالعمل مونتاژ سابرک گیرنده",   // large title on the cover
-  subtitle: "Digital Subrack Assembly Instruction", // gray line under the title
+  title: "دستورالعمل مونتاژ سابرک یوتیلیتی",  // large title on the cover
+  subtitle: "Utility Subrack Assembly Instruction", // gray line under the title
   summary_title: "دستورالعمل مونتاژ سابرک",  // shown in the metadata table + header
 
   // --- Stakeholders -------------------------------------------------------
@@ -19,7 +19,7 @@
   confidentiality: 1,  // 1 = Normal   | 2 = Confidential | 3 = Top Secret
 
   // --- Identification -----------------------------------------------------
-  doc_id: "DIGITAL-SUBRACK-ASSEMBLY-08-2025",
-  date: "۱۴۰۴/۰۸/۰۶",  // header/cover date (use YYYY/MM/DD, or Persian digits for fa)
+  doc_id: "UTILITY-SUBRACK-ASSEMBLY-08-2025",
+  date: "۱۴۰۴/۰۵/۲۰",  // 2025/08/11, the source PDF's own Date field
   year: 2025,          // copyright year on the cover footer
 )

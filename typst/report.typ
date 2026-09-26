@@ -24,7 +24,7 @@
 // ===========================================================================
 
 // A Latin technical token inside RTL text. Without an LTR isolate the bidi
-// algorithm reorders it — «01-SE40001-7» comes out as «SE40001-7-01».
+// algorithm reorders it — «01-SE40001-3» comes out as «SE40001-3-01».
 #let lt(body) = box(text(dir: ltr, body))
 
 #align(center)[بسمه تعالی]
@@ -42,238 +42,241 @@
       [پنل جانبی \
         #lt[Side panel]],
       [#lt[2]],
-      [#lt[01-SE40001-7]],
-      [#image("images/subrack/p02-1.jpg", width: 94%)],
+      [#lt[01-SE40001-3]],
+      [#image("images/subrack-utility/u02-1.png", width: 94%)],
       [#lt[2]],
-      [ریل افقی لبه بلند \
-        #lt[Horizontal rail long lip]],
+      [ریل افقی لبه دار \
+        #lt[Horizontal rail with lip]],
       [#lt[1]],
       [#lt[01-S0000RE]],
-      [#image("images/subrack/p02-2.jpg", width: 94%)],
+      [#image("images/subrack-utility/u02-2.png", width: 94%)],
       [#lt[3]],
       [ریل افقی بک پلین \
         #lt[Horizontal rail for] \
         #lt[backplain]],
       [#lt[2]],
       [#lt[01-S0000RB]],
-      [#image("images/subrack/p02-3.jpg", width: 94%)],
+      [#image("images/subrack-utility/u02-3.png", width: 94%)],
       [#lt[4]],
-      [ریل افقی لبه کوتاه \
-        #lt[Horizontal rail short lip]],
+      [ریل افقی بدون لبه \
+        #lt[Horizontal rail without lip]],
       [#lt[3]],
       [#lt[01-S0000RN]],
-      [#image("images/subrack/p02-4.jpg", width: 94%)],
+      [#image("images/subrack-utility/u02-4.png", width: 94%)],
       [#lt[5]],
       [براکت جلویی \
         #lt[Bracket]],
       [#lt[2]],
       [#lt[01-SE4002]],
-      [#image("images/subrack/p03-1.jpg", width: 94%)],
+      [#image("images/subrack-utility/u03-1.png", width: 94%)],
       [#lt[6]],
       [براکت پشتی \
         #lt[Rear angle]],
       [#lt[2]],
       [#lt[01-SE4003]],
-      [#image("images/subrack/p03-2.jpg", width: 94%)],
+      [#image("images/subrack-utility/u03-2.png", width: 94%)],
       [#lt[7]],
       [دسته جلویی \
         #lt[Hangle]],
       [#lt[2]],
       [#lt[01-SE4004]],
-      [#image("images/subrack/p03-3.png", width: 94%)],
+      [#image("images/subrack-utility/u03-3.png", width: 94%)],
       [#lt[8]],
       [نوار رزوه \
         #lt[Threaded insert]],
       [#lt[6]],
       [#lt[01-S0000TI]],
-      [#image("images/subrack/p03-4-full.jpg", width: 94%)],
+      [#image("images/subrack-utility/u03-4.png", width: 94%)],
       [#lt[9]],
       [نوار سوراخدار \
         #lt[Perforated strip]],
       [#lt[4]],
       [#lt[01-S0000PS]],
-      [#image("images/subrack/p04-1.jpg", width: 94%)],
+      [#image("images/subrack-utility/u04-1.png", width: 94%)],
       [#lt[10]],
       [گسکت افقی \
         #lt[Horizontal EMC gasket]],
       [#lt[4]],
       [#lt[01-S0000GH]],
-      [#image("images/subrack/p04-2.jpg", width: 94%)],
+      [#image("images/subrack-utility/u04-2.png", width: 94%)],
       [#lt[11]],
       [گسکت کاور \
         #lt[Cover EMC gasket]],
       [#lt[4]],
       [#lt[01-S0000GC]],
-      [#image("images/subrack/p04-3.jpg", width: 94%)],
+      [#image("images/subrack-utility/u04-3.png", width: 94%)],
       [#lt[12]],
       [گسکت عمودی \
         #lt[Vertical EMC gasket]],
-      [#lt[22]],
+      [#lt[13]],
       [#lt[01-S0000GV]],
-      [#image("images/subrack/p04-4.png", width: 94%)],
+      [#image("images/subrack-utility/u04-4.png", width: 94%)],
       [#lt[13]],
       [ریل راهنما \
         #lt[Guide rail]],
-      [#lt[19/19]],
+      [#lt[10/10]],
       [#lt[01-AG220-0] \
         & \
         #lt[01-AG220-1]],
-      [#image("images/subrack/p05-1.png", width: 94%)],
+      [#image("images/subrack-utility/u05-1.png", width: 94%)],
       [#lt[14]],
       [پنل پشتی \
         #lt[Rear panel]],
       [#lt[1]],
-      [#lt[109-01-AF430-G-V1]],
-      [#image("images/subrack/p05-2.jpg", width: 94%)],
+      [#lt[108-01-AF430-G-V1]],
+      [#image("images/subrack-utility/u05-2.png", width: 94%)],
       [#lt[15]],
       [کاور \
         #lt[Cover]],
       [#lt[2]],
-      [#lt[109-01-S0000C1-7]],
-      [#image("images/subrack/p05-3.jpg", width: 94%)],
+      [#lt[01-S0000C0-3]],
+      [#image("images/subrack-utility/u05-3.png", width: 94%)],
       [#lt[16]],
-      [براکت فن \
-        #lt[Fan bracket]],
-      [#lt[1]],
-      [#lt[109-01-S000003]],
-      [#image("images/subrack/p05-4.jpg", width: 94%)],
-      [#lt[17]],
       [محافظ فن \
         #lt[Fan shield]],
       [#lt[3]],
       [\-],
-      [#image("images/subrack/p06-1.jpg", width: 94%)],
-      [#lt[18]],
-      [فن دی سی ۶۰\*۶۰ \
+      [#image("images/subrack-utility/u05-4.jpg", width: 94%)],
+      [#lt[17]],
+      [فن دی سی #lt[60]\*#lt[60] \
         #lt[60x60 DC fan]],
-      [#lt[5]],
+      [#lt[3]],
       [#lt[AFB0605MC]],
-      [#image("images/subrack/p06-2.png", width: 94%)],
-      [#lt[19]],
+      [#image("images/subrack-utility/u06-1.png", width: 94%)],
+      [#lt[18]],
       [نوار ایزوله بک پلین \
         #lt[Isolation strip]],
       [#lt[2]],
       [#lt[01-S0000IS]],
-      [#image("images/subrack/p06-3.png", width: 94%)],
-      [#lt[20]],
-      [بست کابل \
-        #lt[Cable clamp]],
-      [#lt[9]],
-      [#lt[109-01-S000009]],
-      [#image("images/subrack/p06-4.jpg", width: 94%)],
-      [#lt[21]],
+      [#image("images/subrack-utility/u06-2.png", width: 94%)],
+      [#lt[19]],
       [کانکتور تغذیه #lt[C14] فیوزدار \
         #lt[C14 fused connector]],
       [#lt[2]],
       [#lt[KM01.1205.11]],
-      [#image("images/subrack/p07-1.png", width: 94%)],
-      [#lt[22]],
-      [کیت پنل #lt[CPU] \
-        #lt[CPU panel kit]],
+      [#image("images/subrack-utility/u06-3.png", width: 94%)],
+      [#lt[20]],
+      [کیت پنل #lt[Clock] \
+        #lt[Clock panel kit]],
       [#lt[1]],
-      [#lt[109-01-AC420-0-V2]],
-      [#image("images/subrack/p07-2.jpg", width: 94%)],
+      [#lt[108-01-AC420-4-V1]],
+      [#image("images/subrack-utility/u06-4.png", width: 94%)],
+      [#lt[21]],
+      [کیت پنل #lt[ADSB] \
+        #lt[ADSB panel kit]],
+      [#lt[1]],
+      [#lt[108-01-AC420-4-V6]],
+      [#image("images/subrack-utility/u07-1.png", width: 94%)],
+      [#lt[22]],
+      [کیت پنل #lt[GPS] \
+        #lt[GPS panel kit]],
+      [#lt[1]],
+      [#lt[108-01-AC420-4-V2]],
+      [#image("images/subrack-utility/u07-2.png", width: 94%)],
       [#lt[23]],
-      [کیت پنل تغذیه \
-        #lt[Power supply panel kit]],
-      [#lt[2]],
-      [#lt[109-01-AC430-4-V1]],
-      [#image("images/subrack/p07-3.jpg", width: 94%)],
-      [#lt[24]],
       [کیت پنل #lt[RF] \
         #lt[RF panel kit]],
-      [#lt[16]],
-      [#lt[109-01-AC420-0-V1]],
-      [#image("images/subrack/p08-1.jpg", width: 94%)],
-      [#lt[25]],
-      [صفحه نصب \
-        #lt[Mounting plate]],
       [#lt[1]],
-      [#lt[109-01-AMP00]],
-      [#image("images/subrack/p08-2.jpg", width: 94%)],
+      [#lt[108-01-AC420-4-V4]],
+      [#image("images/subrack-utility/u07-3.png", width: 94%)],
+      [#lt[24]],
+      [کیت پنل #lt[Sensor] \
+        #lt[Sensor panel kit]],
+      [#lt[1]],
+      [#lt[108-01-AC420-4-V3]],
+      [#image("images/subrack-utility/u08-1.png", width: 94%)],
+      [#lt[25]],
+      [کیت پنل #lt[Splitter] \
+        #lt[Splitter panel kit]],
+      [#lt[1]],
+      [#lt[108-01-AC420-4-V5]],
+      [#image("images/subrack-utility/u08-2.png", width: 94%)],
       [#lt[26]],
+      [کیت پنل تغذیه #lt[5V] \
+        #lt[5VPower supply panel kit]],
+      [#lt[1]],
+      [#lt[108-01-AC430-4-V1]],
+      [#image("images/subrack-utility/u08-3.png", width: 94%)],
+      [#lt[27]],
+      [کیت پنل تغذیه #lt[12V] \
+        #lt[12VPower supply panel] \
+        #lt[kit]],
+      [#lt[1]],
+      [#lt[108-01-AC430-4-V2]],
+      [#image("images/subrack-utility/u09-1.png", width: 94%)],
+      [#lt[28]],
+      [پنل کورکن #lt[10HP] \
+        #lt[10HP filler panel]],
+      [#lt[2]],
+      [#lt[01-AF430-8]],
+      [#image("images/subrack-utility/u09-2.png", width: 94%)],
+      [#lt[29]],
       [#lt[Cross recess collar screw] \
         #lt[M2.5x12]],
-      [#lt[48]],
+      [#lt[46]],
       [\-],
-      [#image("images/subrack/p08-3.jpg", width: 94%)],
-      [#lt[27]],
+      [#image("images/subrack-utility/u09-3.jpg", width: 94%)],
+      [#lt[30]],
       [#lt[Cross recess] \
         #lt[countersunk screw] \
         #lt[M2.5x8]],
-      [#lt[19]],
+      [#lt[8]],
       [\-],
-      [#image("images/subrack/p09-1.jpg", width: 94%)],
-      [#lt[28]],
+      [#image("images/subrack-utility/u09-4.jpg", width: 94%)],
+      [#lt[31]],
       [#lt[Grub screw M2.5x9]],
       [#lt[12]],
       [\-],
-      [#image("images/subrack/p09-2.jpg", width: 94%)],
-      [#lt[29]],
-      [#lt[Cross recess screw M3x8]],
-      [#lt[16]],
-      [\-],
-      [#image("images/subrack/p09-3.jpg", width: 94%)],
-      [#lt[30]],
-      [#lt[Cross recess screw] \
-        #lt[M2.5x12]],
-      [#lt[12]],
-      [\-],
-      [#image("images/subrack/p09-4.jpg", width: 94%)],
-      [#lt[31]],
-      [#lt[Cross recess screw] \
-        #lt[M2.5x8]],
-      [#lt[24]],
-      [\-],
-      [#image("images/subrack/p09-5.jpg", width: 94%)],
+      [#image("images/subrack-utility/u10-1.jpg", width: 94%)],
       [#lt[32]],
       [#lt[Cross recess screw] \
-        #lt[M4x30]],
-      [#lt[20]],
+        #lt[M2.5x10]],
+      [#lt[12]],
       [\-],
-      [#image("images/subrack/p10-1.jpg", width: 94%)],
+      [#image("images/subrack-utility/u10-2.jpg", width: 94%)],
       [#lt[33]],
-      [#lt[M4 nut]],
-      [#lt[20]],
+      [#lt[Cross recess screw] \
+        #lt[M4x30]],
+      [#lt[12]],
       [\-],
-      [#image("images/subrack/p10-2.jpg", width: 94%)],
+      [#image("images/subrack-utility/u10-3.jpg", width: 94%)],
       [#lt[34]],
-      [#lt[M4 spring washer]],
-      [#lt[20]],
+      [#lt[M4 nut]],
+      [#lt[12]],
       [\-],
-      [#image("images/subrack/p10-3.jpg", width: 94%)],
+      [#image("images/subrack-utility/u10-4.png", width: 94%)],
       [#lt[35]],
-      [#lt[M4 flat washer]],
-      [#lt[20]],
+      [#lt[M4 spring washer]],
+      [#lt[12]],
       [\-],
-      [#image("images/subrack/p10-4.jpg", width: 94%)],
+      [#image("images/subrack-utility/u10-5.png", width: 94%)],
       [#lt[36]],
-      [#lt[Sleeve]],
-      [#lt[31]],
+      [#lt[M4 flat washer]],
+      [#lt[12]],
       [\-],
-      [#image("images/subrack/p10-5.png", width: 94%)],
+      [#image("images/subrack-utility/u11-1.png", width: 94%)],
       [#lt[37]],
+      [#lt[Sleeve]],
+      [#lt[40]],
+      [\-],
+      [#image("images/subrack-utility/u11-2.png", width: 94%)],
+      [#lt[38]],
       [#lt[Countersunk torx M5x12]],
       [#lt[4]],
       [\-],
-      [#image("images/subrack/p11-1.jpg", width: 94%)],
-      [#lt[38]],
+      [#image("images/subrack-utility/u11-3.jpg", width: 94%)],
+      [#lt[39]],
       [#lt[Torx M4x6]],
       [#lt[56]],
       [\-],
-      [#image("images/subrack/p11-2.jpg", width: 94%)],
-      [#lt[39]],
+      [#image("images/subrack-utility/u11-4.jpg", width: 94%)],
+      [#lt[40]],
       [#lt[Torx m4x12 self-lock]],
       [#lt[24]],
       [\-],
-      [#image("images/subrack/p11-3.jpg", width: 94%)],
-      [#lt[40]],
-      [#lt[M2.5 washer]],
-      [#lt[24]],
-      [\-],
-      [#image("images/subrack/p11-4.jpg", width: 94%)],
+      [#image("images/subrack-utility/u11-5.jpg", width: 94%)],
     ),
-    caption: [معرفی قطعات سابرک گیرنده.],
+    caption: [معرفی قطعات سابرک یوتیلیتی.],
   )
 ]
 
@@ -285,149 +288,85 @@
       columns: (1.26fr, 3.70fr, 5.04fr),
       align: center + horizon,
       table.header(repeat: true, [مرحله], [توضیحات], [تصویر]),
-      [۱],
-      [فن ها را با استفاده از پیچ #lt[M4] برروی براکت نصب کنید.
-
-        شماره قطعه: #lt[16-18-32-33-34-35]],
-      [#image("images/subrack/p12-1-full.jpg", width: 96%)],
-      [۲],
-      [مطابق شکل، نگهدارنده پیچ (#lt[sleeve]) و پیچ‌های مربوطه را بر روی پنل پشت نصب کنید.
-
-        شماره قطعه: #lt[14-26-36]],
-      [#image("images/subrack/p13-1-full.jpg", width: 96%)],
-      [۳],
+      [#lt[1]],
       [فن و محافظ فن را بر روی پنل پشتی نصب کنید.
 
-        شماره قطعه: #lt[16-17-18-32-33-34-35]],
-      [#image("images/subrack/p13-3-full.jpg", width: 96%)],
-      [۴],
-      [گسکت افقی را مانند شکل بر روی لبه جلویی ریل‌های لبه دار قرار دهید. دقت کنید که فاصله‌ی گسکت از لبه‌های ریل برابر باشد. گسکت‌های افقی تنها برای ریل‌های لبه دار استفاده می‌شوند و ریل‌های بک پلین فاقد گسکت هستند.
-
-        شماره قطعه: #lt[10] و #lt[2]],
-      [#image("images/subrack/p14-1-full.jpg", width: 96%)],
-      [۵],
-      [با استفاده از ابزار مخصوص، قسمت پایینی گسکت را به آرامی فشار دهید تا در محل مخصوص خود قرار گیرد. دقت شود که در این مرحله قسمت بالایی از شیار خارج نشود.],
-      [#image("images/subrack/p14-3-full.jpg", width: 96%)],
-      [۶],
+        شماره قطعه: #lt[14-16-17-35-36-37-38]],
+      [#image("images/subrack-utility/u12-1.jpg", width: 96%)],
+      [#lt[2]],
       [نوار رزوه دار و نوار سوراخدار را در محل آن برروی ریل ها قرار دهید. برای ریل بک پلین تنها از نوار سوراخدار استفاده شود.
 
         شماره قطعه: #lt[2-8-9]],
-      [#image("images/subrack/p15-1.jpg", width: 96%)],
-      [۷],
-      [با استفاده از پیچ #lt[grub M2.5x9] نوارها را در جای خود محکم کنید. محل نصب پیچ‌ها سوراخ ابتدایی و انتهایی می‌باشد. خروجی این مرحله یک پیش مونتاژ از ریل‌ها، گسکت‌ها و نوارهای رزوه و سوراخدار می‌باشد.
+      [#image("images/subrack-utility/u12-2.png", width: 96%)],
+      [#lt[3]],
+      [با استفاده از پیچ #lt[grub M2.5x9] نوارها را در جای خود محکم کنید.
 
-        شماره قطعه: #lt[28]],
-      [#image("images/subrack/p15-2-full.jpg", width: 96%)],
-      [۸],
-      [برای ریل‌های بک پلین نیز مراحل بالا را تکرار کنید. توجه شود برروی ریل‌های بک پلین گسکت نصب نمی‌شود.
+        شماره قطعه: #lt[31]],
+      [#image("images/subrack-utility/u13-1-full.jpg", width: 96%)],
+      [#lt[4]],
+      [برای ریل بک پلین مراحل بالا را تکرار کنید.
 
-        شماره قطعات: #lt[3-8-28]],
-      [#image("images/subrack/p16-1-full.jpg", width: 96%)],
-      [۹],
-      [یک عدد ریل بک پلین و یک عدد ریل لبه بلند را مطابق شکل به موازات یکدیگر قرار دهید.],
-      [#image("images/subrack/p16-3.jpg", width: 96%)],
-      [۱۰],
-      [لبه ریل‌ها را به سمت خود قررا داده و ریل‌های راهنما مربوط به جهت پایین را مطابق آرایش تصویر برروی آنها نصب کنید. یک ریل در سمت چپ قرار داده سپس ۴ سوراخ فاصله دهید و سایر ریل‌ها را نصب کنید. اتصالات فلزی نصب شده برروی ریل‌های راهنما باید به سمت جلو باشد. توجه شود برروی سوراخ نصفه لبه ریل‌ها نباید چیزی نصب شود.
+        شماره قطعات: #lt[3-8-32]],
+      [#image("images/subrack-utility/u14-1.png", width: 96%)],
+      [#lt[5]],
+      [گسکت افقی را بر روی ریل به صورت کشویی نصب کنید. (مخصوص ریلهای جلویی و پشتی)
 
-        شماره قطعه: #lt[13]],
-      [#image("images/subrack/p17-1-full.jpg", width: 96%)],
-      [۱۱],
-      [این مجموعه پیش مونتاژی که شامل ریل بک پلین و ریل لبه بلند است در مراحل آتی در قسمت پایین سابرک استفاده خواهد شد.],
-      [#image("images/subrack/p18-1.jpg", width: 96%)],
-      [۱۲],
-      [مشابه مرحله پیش مونتاژ قبل، یک ریل لبه کوتاه و یک ریل بک پلین را مطابق شکل مقابل هم قرار دهید.],
-      [#image("images/subrack/p18-2.jpg", width: 96%)],
-      [۱۳],
-      [مشابه پیش مونتاژ قبل، ریل ها را برروی ریل‌های افقی نصب کنید. تفاوت این مرحله با پیش مونتاژ قبل این است که جهت نصب ریل‌ها معکوس بوده و از ریل‌های راهنمای جهت بالا استفاده می‌شود. یک ریل را در سمت راست نصب کرده سپس ۴ سوراخ فاصله داده و باقی ریل‌ها را نصب کنید.
+        شماره قطعه: #lt[10]],
+      [#image("images/subrack-utility/u14-2.png", width: 96%)],
+      [#lt[6]],
+      [ریلها را بر روی یک عدد پنل جانبی به همراه براکت آن نصب کنید. ریل لبه دار در جلو-پایین و ریل بدون لبه در جلو-بالا نصب شوند. فاصله ریل بک پلین از ریل جلویی #lt[11] سوراخ باشد.
 
-        شماره قطعه: #lt[13]],
-      [#image("images/subrack/p19-1-full.jpg", width: 96%)],
-      [۱۴],
-      [دستگیره و گسکت عمودی را برروی براکت‌های جلویی نصب کنید.
+        شماره قطعه: #lt[1-2-4-5-40]],
+      [#image("images/subrack-utility/u14-3.png", width: 96%)],
+      [#lt[7]],
+      [پنل جانبی و براکت های سمت دیگر را نصب کرده و تمام پیچ ها را سفت کنید.
 
-        شماره قطعه: #lt[5-7-12-37]],
-      [#image("images/subrack/p20-1-full.jpg", width: 96%)],
-      [۱۵],
-      [پنل‌های جانبی را طبق جهت نشان داده شده در شکل برروی پایه‌های فیکسچر نصب نمایید. جهت فلش به سمت بالا بوده و دقت شود که در قسمت پایین ردیف‌های سوراخ بیشتر است. همچنین توجه شود که برآمدگی‌های روی پنل به سمت داخل قرار گیرند.],
-      [#image("images/subrack/p21-1.jpg", width: 96%)],
-      [۱۶],
-      [مجموعه پیش مونتاژی شامل ریل لبه کوتاه را در قسمت بالا قرار داده و براکت بدون گسکت را در محل خود (وجه راست سابرک) گذاشته و پیچ‌های مخصوص آن را ببندید.
+        شماره قطعه: #lt[1-5-6-40]],
+      [#image("images/subrack-utility/u15-1.png", width: 96%)],
+      [#lt[8]],
+      [دستگیرههای جلویی را در محل آنها نصب کنید.
 
-        شماره قطعه: #lt[39]],
-      [#image("images/subrack/p21-2-full.jpg", width: 96%)],
-      [۱۷],
-      [در سمت چپ براکت شامل گسکت را در محل خود (وجه چپ سابرک) قرار داده و پیچ‌ها را ببندید.
+        شماره قطعه : #lt[7-38]],
+      [#image("images/subrack-utility/u15-2.jpg", width: 96%)],
+      [#lt[9]],
+      [گسکتهای #lt[EMC] را برروی براکت جلویی و پشتی نصب نمایید.
 
-        شماره قطعه: #lt[39]],
-      [#image("images/subrack/p22-1-full.jpg", width: 96%)],
-      [۱۸],
-      [پس از نصب براکت ها پیچ‌های ریل بک‌پلین را ببندید. توجه شود پیچ‌ها شل بسته شوند.
+        شماره قطعه : #lt[12]],
+      [#image("images/subrack-utility/u16-1.png", width: 96%)],
+      [#lt[10]],
+      [ریلهای راهنما مطابق شکل نصب شوند. از سمت راست به انداز ه #lt[4] سوراخ برروی ریل افقی با بدنه فاصله داده شود. باقی ریل ها نیز با فاصله #lt[4] سوراخ از یکدیگر نصب شوند.
 
-        شماره قطعه: #lt[39]],
-      [#image("images/subrack/p22-3.jpg", width: 96%)],
-      [۱۹],
-      [سابرک را بچرخانید و پیش مونتاژ شامل ریل لبه بلند را در قسمت زیر سابرک نصب کنید. توجه شود پیچ‌ها شل بسته شوند.],
-      [#image("images/subrack/p23-1.jpg", width: 96%)],
-      [۲۰],
-      [نوار ایزوله را برروی ریل بک پلین قرار داده و سپس برد بک پلین را با استفاده از پیچ ۲٫۵ سایز ۱۲ میلیمتر و واشر فنری و واشر تخت در محل خود به صورت شل ببندید. به جهت برد بک پلین دقت شود که کانکتورهای پاور ورودی باید به سمت پایین سابرک باشند.
+        شماره قطعه : #lt[13]],
+      [#image("images/subrack-utility/u16-2.png", width: 96%)],
+      [#lt[11]],
+      [توجه شود ریلهای بالا و پایین سابرک در محل نصب اتصالات #lt[ESD] متفاوت اند.],
+      [#image("images/subrack-utility/u16-3.png", width: 96%)],
+      [#lt[12]],
+      [پنل پشتی را به همراه فنهای آن در قسمت پشت سابرک نصب شود.
 
-        شماره قطعه: #lt[19-30-40]],
-      [#image("images/subrack/p23-2-full.jpg", width: 96%)],
-      [۲۱],
-      [بردهای تست را در ریل اول و آخر قرار دهید و ابتدا روان بودن آنها را تست کرده و در صورت سفت بودن بدنه را ریگلاژ کنید. سپس ریل ها را بسته و بردهای تست را برروی بک‌پلین جا زده و پیچ‌های برد بک‌پلین را سفت کنید.],
-      [],
-      [۲۲],
-      [نگهدارندههای کابل را در محل خود طبق آرایش مربوطه برروی صفحه نصب قرار دهید.
+        شماره قطعه : #lt[14]],
+      [#image("images/subrack-utility/u17-1.png", width: 96%)],
+      [#lt[13]],
+      [برد بک پلین به همراه پیچهای #lt[M2.5x10] و نوار ایزوله برروی ریل بک پلین نصب شود.
 
-        شماره قطعه: #lt[25-20]],
-      [#image("images/subrack/p24-1.jpg", width: 96%)],
-      [۲۳],
-      [صفحه نصب را در محل خود تنها با ۲ پیچ ابتدایی و انتهایی در هر طرف نصب کنید. پیچ‌ها در این مرحله شل بسته شوند.
+        شماره قطعه : #lt[18-32]],
+      [#image("images/subrack-utility/u17-2.jpg", width: 96%)],
+      [#lt[14]],
+      [پش از نصب گسکت کاور در شیار ریل ها، کاورهای بالا و پایین سابرک را نصب نمایید.
 
-        شماره قطعه: #lt[38]],
-      [#image("images/subrack/p24-2-full.jpg", width: 96%)],
-      [۲۴],
-      [به محل نصب صفحه نصب دقت شود. محل آن اولین ردیف سوراخ مربعی از سمت پایین سابرک می‌باشد.],
-      [#image("images/subrack/p25-1.jpg", width: 96%)],
-      [۲۵],
-      [ریل‌های لبه کوتاه و براکت‌ها را در قسمت پشت سابرک نصب نمایید. توجه شود براکت شامل گسکت باید در وجه راست قرار گیرد.
+        شماره قطعه : #lt[11-15-39]],
+      [#image("images/subrack-utility/u18-1.png", width: 96%)],
+      [#lt[15]],
+      [در سمت چپ سابرک دو عدد پنل کورکن نصب کنید.
 
-        شماره قطعه: #lt[39-6]],
-      [#image("images/subrack/p25-2-full.jpg", width: 96%)],
-      [۲۶],
-      [محل پیچ‌های صفحه نصب را به صورت چشمی در مرکز سوراخ مربعی قرار داده و تمامی پیچ‌های آن را سفت کنید.
+        شماره قطعه : #lt[28]],
+      [#image("images/subrack-utility/u18-2.png", width: 96%)],
+      [#lt[16]],
+      [کارتها را برروی پنلهای مربوط به آنها نصب کرده و در محل آنها قرار دهید.
 
-        شماره قطعه: #lt[38]],
-      [#image("images/subrack/p26-1-full.jpg", width: 96%)],
-      [۲۷],
-      [براکت فن پیش‌مونتاژ شده را در محل خود نصب کنید. جهت نصب مطابق تصویر باشد.
-
-        شماره قطعه: #lt[38]],
-      [#image("images/subrack/p27-1.jpg", width: 96%)],
-      [۲۸],
-      [دقت شود محل نصب براکت فن در محل لبه جلویی صفحه نصب می‌باشد.],
-      [#image("images/subrack/p27-2-full.jpg", width: 96%)],
-      [۲۹],
-      [گسکت‌های #lt[EMC] مربوط به کاور را در شیار ریل‌های افقی نصب نمایید.
-
-        شماره قطعه #lt[11]:],
-      [#image("images/subrack/p28-1-full.jpg", width: 96%)],
-      [۳۰],
-      [پنل پشتی را به همراه فن‌های آن در قسمت پشت سابرک نصب شود.
-
-        شماره قطعه #lt[14]:],
-      [#image("images/subrack/p28-3.jpg", width: 96%)],
-      [۳۱],
-      [کاورهای بالا و پایین سابرک را نصب نمایید.
-
-        شماره قطعه #lt[15-38]:],
-      [#image("images/subrack/p29-1.jpg", width: 96%)],
-      [۳۲],
-      [پنل‌های جلویی را طبق آرایش مربوط در محل آنها قرار دهید.
-
-        شماره قطعه #lt[21-22-23-24]:],
-      [#image("images/subrack/p29-2.jpg", width: 96%)],
+        شماره قطعه : #lt[20-21-22-23-24-25-26-27]],
+      [#image("images/subrack-utility/u18-3.png", width: 96%)],
     ),
-    caption: [مراحل مونتاژ سابرک گیرنده.],
+    caption: [مراحل مونتاژ سابرک یوتیلیتی.],
   )
 ]
